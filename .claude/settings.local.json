@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/Xessable/AppData/Local/Temp/puppeteer-test\")",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

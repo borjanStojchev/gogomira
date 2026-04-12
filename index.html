@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GogoMira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --accent: #e8a838;
+      --accent-dark: #c8891a;
+      --dark: #1a1a1a;
+      --dark2: #f4f6f9;
+      --text: #444444;
+      --light: #eef1f6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      transition: background 0.35s, box-shadow 0.35s;
+      padding: 0 40px;
+    }
+    #navbar.scrolled {
+      background: #fff;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      z-index: 99;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    #hero::before { display: none; }
+    #hero::after { display: none; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+      max-width: 820px;
+    }
+    .hero-content h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    .hero-content p {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 38px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.7);
+      color: #fff;
+      padding: 12px 36px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title .divider {
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      margin: 0 auto 18px;
+    }
+    .section-title p {
+      font-size: 14px;
+      color: #777;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: #fff; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .about-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(232,168,56,0.15), transparent);
+    }
+    .about-text h3 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .about-text p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .about-features {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .about-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .about-feature .check {
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .about-feature .check svg {
+      width: 10px;
+      height: 10px;
+      fill: #fff;
+    }
+
+    /* ── WHY CHOOSE US ── */
+    #why { background: var(--light); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .feature-box {
+      background: #fff;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 22px;
+    }
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+    .feature-box h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .feature-box p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    /* ── SERVICES ACCORDION ── */
+    #services { background: #fff; }
+    .accordion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .accordion { grid-template-columns: 1fr; }
+    }
+    .acc-item {
+      border: 1px solid #e8e8e8;
+      border-left: 4px solid transparent;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .acc-item.open {
+      border-left-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(232,168,56,0.1);
+    }
+    .acc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      cursor: pointer;
+      user-select: none;
+      gap: 16px;
+    }
+    .acc-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .acc-svc-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(232,168,56,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .acc-item.open .acc-svc-icon { background: var(--accent); }
+    .acc-svc-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-dark);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
+    }
+    .acc-item.open .acc-svc-icon svg { stroke: #fff; }
+    .acc-header h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+    .acc-icon {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s, transform 0.3s;
+    }
+    .acc-item.open .acc-icon {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: rotate(45deg);
+    }
+    .acc-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: #999;
+      fill: none;
+      transition: stroke 0.2s;
+    }
+    .acc-item.open .acc-icon svg { stroke: #fff; }
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .acc-body-inner {
+      padding: 0 24px 24px 24px;
+    }
+    .acc-body-inner p {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .acc-body-inner ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+    }
+    .acc-body-inner ul li {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #fdf8ef;
+      border: 1px solid rgba(232,168,56,0.25);
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    .acc-body-inner ul li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .acc-body-inner { padding-left: 28px; }
+      .acc-body-inner ul { grid-template-columns: 1fr; }
+    }
+
+    /* ── STATS / COUNTER ── */
+    #stats {
+      background: var(--dark2);
+      padding: 60px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 30px 20px;
+      border-right: 1px solid rgba(232,168,56,0.25);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent-dark);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--light); }
+    #portfolio .section-title h2 { color: var(--dark); }
+    #portfolio .section-title p { color: #777; }
+    .portfolio-filter {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid #ccc;
+      color: #666;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .portfolio-item:hover img { transform: scale(1.08); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(232,168,56,0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .portfolio-overlay span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+    }
+    .portfolio-overlay .plus {
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 22px;
+      color: #fff;
+    }
+
+    /* ── BLOG ── */
+    #blog { background: var(--light); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .blog-card {
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .blog-body {
+      padding: 24px;
+    }
+    .blog-meta {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 14px;
+    }
+    .blog-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .blog-body p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .read-more {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .read-more:hover { gap: 10px; }
+
+    /* ── TEAM ── */
+    #team { background: #fff; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .team-card {
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+    .team-photo {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .team-photo img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .team-social {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(232,168,56,0.9);
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    .team-card:hover .team-social { transform: translateY(0); }
+    .team-social a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .team-social a:hover { background: rgba(255,255,255,0.2); }
+    .team-social svg { width: 14px; height: 14px; fill: #fff; }
+    .team-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .team-card span {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--light); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: #fff;
+      padding: 32px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .quote-mark {
+      font-size: 64px;
+      color: var(--accent);
+      line-height: 0.6;
+      margin-bottom: 18px;
+      font-family: Georgia, serif;
+    }
+    .testimonial-card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-author img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .testimonial-author strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .testimonial-author em {
+      font-size: 11px;
+      color: #999;
+      font-style: normal;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--light); }
+    #contact .section-title h2 { color: var(--dark); }
+    #contact .section-title p { color: #777; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .contact-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .contact-item span {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #ddd;
+      color: var(--dark);
+      padding: 12px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #bbb; }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--accent); }
+    .contact-form textarea { height: 140px; resize: vertical; }
+    .contact-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #f0f0f0;
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+    footer p {
+      font-size: 13px;
+      color: #888;
+    }
+    footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+    .footer-top {
+      background: #f7f8fa;
+      padding: 60px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-col h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .footer-col p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.8;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      transition: color 0.2s, padding-left 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-links a:hover {
+      color: var(--accent-dark);
+      padding-left: 4px;
+    }
+    .footer-links a::before {
+      content: '›';
+      color: var(--accent);
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: #e0e0e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .footer-social a:hover { background: var(--accent); }
+    .footer-social svg { width: 16px; height: 16px; fill: #555; }
+    .footer-social a:hover svg { fill: #fff; }
+
+    /* ── BACK TO TOP ── */
+    #back-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      transition: background 0.2s, transform 0.15s;
+    }
+    #back-top:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+    #back-top.show { display: flex; }
+    #back-top svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ── HERO SCROLL INDICATOR ── */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.35);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* ── HERO IMAGE BG ── */
+    .hero-cityscape {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: url('hero.jpg') center center / cover no-repeat;
+    }
+    .hero-cityscape::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.52);
+    }
+    .hero-cityscape::after { display: none; }
+    .hero-overlay-grid { display: none; }
+    .hero-stars { display: none; }
+
+    /* ── LANG SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      margin-left: 24px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #555;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 2px;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+    .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    @media (max-width: 1024px) {
+      .features-grid, .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 768px) {
+      #navbar { padding: 0 20px; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-form .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Gogo<span>Mira</span></a>
+      <ul class="nav-links">
+        <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="mk">MK</button>
+        <button class="lang-btn" data-lang="sq">SQ</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-cityscape">
+      <div class="hero-overlay-grid"></div>
+      <div class="hero-stars"></div>
+    </div>
+    <div class="hero-content">
+      <h1 data-i18n="hero_title">Your Legal Rights, Expertly Defended</h1>
+      <p data-i18n="hero_sub">Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.</p>
+      <a href="#about" class="btn-primary" data-i18n="hero_cta1">Our Services</a>
+      <a href="#contact" class="btn-outline" data-i18n="hero_cta2">Contact Us</a>
+    </div>
+    <div class="scroll-down">
+      <div class="scroll-line"></div>
+      <span data-i18n="scroll">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="https://placehold.co/600x420/e8e4e0/aa9988" alt="About GogoMira">
+        </div>
+        <div class="about-text">
+          <h3 data-i18n="about_title">Who We Are</h3>
+          <p data-i18n="about_p1">GogoMira is a full-service digital agency dedicated to helping businesses grow through creative strategies and cutting-edge technology. We believe that every brand deserves a unique and compelling presence.</p>
+          <p data-i18n="about_p2">Our team of experts combines deep industry knowledge with innovative thinking to deliver results that matter. From brand identity to digital campaigns, we are your partner every step of the way.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat1">Creative Strategy</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat2">Brand Development</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat3">Digital Marketing</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat4">Web Development</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat5">UI/UX Design</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-i18n="feat6">Analytics & SEO</span>
+            </div>
+          </div>
+          <div style="margin-top:28px;">
+            <a href="#services" class="btn-primary" data-i18n="about_btn">Our Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="why_title">Why Choose Us</h2>
+        <div class="divider"></div>
+        <p data-i18n="why_sub">We combine creativity, technology, and data to deliver extraordinary results for our clients.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h4 data-i18n="w1_title">Expert Team</h4>
+          <p data-i18n="w1_desc">Our seasoned professionals bring years of industry experience across branding, development, and marketing.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <h4 data-i18n="w2_title">On-Time Delivery</h4>
+          <p data-i18n="w2_desc">We respect your deadlines and deliver every project on schedule, without compromising quality.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h4 data-i18n="w3_title">Proven Results</h4>
+          <p data-i18n="w3_desc">Our clients consistently achieve measurable growth. We let results speak louder than promises.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4 data-i18n="w4_title">Client-Centric</h4>
+          <p data-i18n="w4_desc">Your success is our mission. We work closely with every client to understand their unique needs.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+          <h4 data-i18n="w5_title">Modern Technology</h4>
+          <p data-i18n="w5_desc">We leverage the latest tools and frameworks to build scalable, future-proof digital solutions.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4 data-i18n="w6_title">Secure & Reliable</h4>
+          <p data-i18n="w6_desc">Security and stability are built into everything we create. Your data and your customers are safe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="svc_title">Наши Услуги</h2>
+        <div class="divider"></div>
+        <p data-i18n="svc_sub">Нудиме сеопфатна правна поддршка во повеќе области на правото.</p>
+      </div>
+      <div class="accordion">
+
+        <!-- 01 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h4 data-i18n="acc1_h">Работни односи</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="1"></div>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+              <h4 data-i18n="acc2_h">Облигациони односи</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="2"></div>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+              <h4 data-i18n="acc3_h">Деловно право</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="3"></div>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h4 data-i18n="acc4_h">Парница и арбитража</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="4"></div>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <h4 data-i18n="acc5_h">Наплата на долг</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="5"></div>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <h4 data-i18n="acc6_h">Недвижности и градежништво</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="6"></div>
+          </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+              <h4 data-i18n="acc7_h">Консултантски услуги</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="7"></div>
+          </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <h4 data-i18n="acc8_h">Надомест на штета</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="8"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">342</div>
+          <div class="stat-label" data-i18n="stat1">Projects Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">58</div>
+          <div class="stat-label" data-i18n="stat2">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">14</div>
+          <div class="stat-label" data-i18n="stat3">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24</div>
+          <div class="stat-label" data-i18n="stat4">Industry Awards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="ct_title">Get In Touch</h2>
+        <div class="divider"></div>
+        <p data-i18n="ct_sub">Ready to start your next project? We'd love to hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h4 data-i18n="ct_info">Contact Information</h4>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <strong data-i18n="ct_addr_label">Address</strong>
+              <span>42 Innovation Drive, Suite 800<br>New York, NY 10001</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <strong data-i18n="ct_phone_label">Phone</strong>
+              <span>+1 (212) 555-0190</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <strong data-i18n="ct_email_label">Email</strong>
+              <span>hello@gogomira.com</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div>
+              <strong data-i18n="ct_hours_label">Hours</strong>
+              <span data-i18n="ct_hours_val">Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 2:00 PM</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form class="contact-form" onsubmit="return false;">
+            <div class="form-row">
+              <input type="text" data-i18n-ph="form_name" placeholder="Your Name">
+              <input type="email" data-i18n-ph="form_email" placeholder="Your Email">
+            </div>
+            <input type="text" data-i18n-ph="form_subject" placeholder="Subject">
+            <textarea data-i18n-ph="form_msg" placeholder="Your Message"></textarea>
+            <button type="submit" class="btn-primary" data-i18n="form_send" style="border:none;cursor:pointer;font-family:'Montserrat',sans-serif;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>GogoMira</h5>
+          <p data-i18n="ft_about">A full-service creative agency helping ambitious brands grow through strategy, design, and technology. Based in New York, working worldwide.</p>
+          <div class="footer-social">
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="ft_links">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#about" data-i18n="ft_about_us">About Us</a></li>
+            <li><a href="#services" data-i18n="nav_services">Services</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="nav_services">Services</h5>
+          <ul class="footer-links">
+            <li><a href="#" data-i18n="s1_title">Brand Identity</a></li>
+            <li><a href="#" data-i18n="s2_title">Web Design & Dev</a></li>
+            <li><a href="#" data-i18n="s3_title">Digital Marketing</a></li>
+            <li><a href="#" data-i18n="s4_title">UI/UX Design</a></li>
+            <li><a href="#" data-i18n="s5_title">Content Strategy</a></li>
+            <li><a href="#" data-i18n="s6_title">Analytics & Growth</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <p data-i18n="ft_copy">&copy; 2026 GogoMira. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <div id="back-top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </div>
+
+  <script>
+    // ── NAVBAR SCROLL ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── BACK TO TOP ──
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('show', window.scrollY > 400);
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ── SMOOTH SCROLL ──
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // ── TRANSLATIONS ──
+    const T = {
+      en: {
+        nav_home:'Home', nav_about:'About', nav_services:'Services', nav_contact:'Contact',
+        hero_title:'Your Legal Rights, Expertly Defended',
+        hero_sub:'Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.',
+        hero_cta1:'Our Services', hero_cta2:'Contact Us', scroll:'Scroll',
+        about_title:'About Our Firm',
+        about_p1:'GogoMira Law Firm is a full-service legal practice committed to protecting the rights and interests of our clients. With years of experience across multiple areas of law, we provide tailored legal solutions for individuals and businesses alike.',
+        about_p2:'Our team of lawyers combines deep legal expertise with a client-first approach. Whether you face an employment dispute, a business challenge, or a civil claim, we are your trusted partner — focused on achieving the best possible outcome for you.',
+        feat1:'Employment Law', feat2:'Business Law', feat3:'Civil Litigation',
+        feat4:'Contract Law', feat5:'Real Estate Law', feat6:'Debt Collection',
+        about_btn:'Our Services',
+        why_title:'Why Choose Us',
+        why_sub:'We provide experienced, client-focused legal representation across multiple areas of law — with integrity, confidentiality, and dedication.',
+        w1_title:'Experienced Attorneys', w1_desc:'Our lawyers bring years of courtroom and advisory experience across employment, business, civil, and real estate law.',
+        w2_title:'Timely & Efficient', w2_desc:'We understand that legal matters are time-sensitive. We act swiftly and keep you informed at every stage of your case.',
+        w3_title:'Proven Track Record', w3_desc:'We have successfully resolved hundreds of cases — from complex business disputes to individual employment claims.',
+        w4_title:'Client-First Approach', w4_desc:'Your interests are our priority. We listen carefully, advise honestly, and work tirelessly to protect your rights.',
+        w5_title:'Transparent Fees', w5_desc:'We believe in clear, honest communication about costs. No hidden fees — just straightforward legal advice you can trust.',
+        w6_title:'Strict Confidentiality', w6_desc:'Every matter is handled with complete discretion. Your information and your case remain strictly confidential at all times.',
+        svc_title:'Our Services', svc_sub:'We offer comprehensive legal support across multiple areas of law.',
+        stat1:'Cases Resolved', stat2:'Satisfied Clients', stat3:'Years of Experience', stat4:'Practice Areas',
+        ct_title:'Get In Touch', ct_sub:'Have a legal question or need representation? Contact us for a confidential consultation.',
+        ct_info:'Contact Information', ct_addr_label:'Address', ct_phone_label:'Phone',
+        ct_email_label:'Email', ct_hours_label:'Hours',
+        ct_hours_val:'Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 2:00 PM',
+        form_name:'Your Name', form_email:'Your Email', form_subject:'Subject',
+        form_msg:'Your Message', form_send:'Send Message',
+        ft_about:'GogoMira Law Firm provides comprehensive legal services in employment, business, civil, and real estate law. Committed to protecting your rights with expertise and integrity.',
+        ft_links:'Quick Links', ft_about_us:'About Us',
+        ft_copy:'© 2026 GogoMira. All rights reserved.',
+        acc1_h:'Employment Relations', acc2_h:'Contract Law', acc3_h:'Business Law',
+        acc4_h:'Litigation & Arbitration', acc5_h:'Debt Collection',
+        acc6_h:'Real Estate & Construction', acc7_h:'Consulting Services', acc8_h:'Compensation for Damages',
+        acc:[
+          {p1:'The specifics of the labor market allow employers to apply measures contrary to applicable laws. Often, due to unfamiliarity with applicable provisions, employers may find themselves violating the rights of their employees.',p2:'A properly regulated employment process is a benefit for both contracting parties, ultimately producing a more favorable working environment and financial gains for the business.',items:['Preparation and analysis of employment and managerial contracts','Termination of employment contracts','Representation before competent authorities','Employment and residence procedures for foreign nationals','Termination and restructuring procedures','Rights regarding non-compete protection','Drafting internal regulations, decisions, and other acts','Representation before courts in employment matters']},
+          {p1:'Written contracts are the means by which contracting parties guarantee the achievement of their intended goals and interests. A properly and comprehensively drafted contract enables the long-term maintenance and development of civil or business relations.',p2:'If the contract is properly drafted or thoroughly understood through comprehensive analysis, the parties will be able to avoid lengthy and costly court proceedings.',items:['Sale, gift, and other property disposition contracts','Exchange and physical partition of real estate contracts','Lease and loan contracts','Representation and mediation contracts','Pledge contracts','Mutual relations settlement contracts','Other named and unnamed contracts']},
+          {p1:'Daily business interactions generate a large number of legal questions. Establishing and regulating a business relationship in a professional manner requires professional legal support.',p2:'Our law firm, as an authorized registration agent at the Central Registry, has completed all types of changes swiftly, professionally, and at market-appropriate prices.',items:['Incorporation of companies and branches of foreign companies','Registration of civil associations and foundations','Changes of authorized persons, registered office, and founding acts','Organization and change of branches','Liquidation of companies and branches','Registration of foreign direct investments','All other corporate change procedures']},
+          {p1:'Our law firm is committed to resolving every dispute as quickly as possible and out of court. Where a compromise solution is possible, we believe going to court is costly, time-consuming, and makes the outcome uncertain.',p2:'When court proceedings become unavoidable, our firm will represent your interests and work diligently to achieve a swift and favorable outcome.',items:['Monetary claims','Commercial disputes','Insurance','Compensation for damages (material and non-material)','Employment relations','Ownership and other property rights','Family and marital disputes (divorce)']},
+          {p1:'If your company has outstanding claims from its clients or consumers, we as debt collection lawyers will help you collect the receivable from your debtor. We act quickly and professionally — both out of court and through court proceedings.',p2:'In our long-standing experience in debt collection, we have established close relations with expert witnesses who can produce professional assessments confirming both the validity and the amount of the debt.',items:['Consultations regarding monetary claim collection','Representation before a court or notary','Representation before an enforcement officer','Other debt collection actions']},
+          {p1:'Knowledge of laws and domestic practices is of great importance when it comes to real estate, as well as all rights and obligations arising from its use, disposal, and restriction.',p2:'Regarding construction, we believe the greatest success lies in the timely prevention of potential harmful consequences for our clients — investors — providing legal assistance through to obtaining the property title.',items:['Planning and design','Construction and development','Finance and taxation','Obtaining construction permits and approvals','Drafting and analyzing legal documentation','Representation before competent authorities']},
+          {p1:'Legal entities in daily operations encounter legal questions that do not represent standard business challenges. Engaging a law firm to guide you through these legal issues will save time and resources.',p2:'Our experience gained through consulting various clients from different sectors will allow you to make all decisions related to your business interests quickly and correctly.',items:['Review and drafting of contracts and other legal acts','Employment relations','Business law','Contract obligations','Property law matters','Other areas']},
+          {p1:'Regardless of how it occurred, a damaging event is always unpredictable and causes consequences for the injured party. The law provides that every person\'s assets must be restored to the state as if the damage had never occurred — ensuring the right to satisfaction for anyone who has suffered harm.',items:['Damage caused by impairment — reduction of assets','Damage due to lost earnings / profit','Non-material damage caused by violation of personal rights','Damage compensation in insurance matters']},
+        ],
+      },
+      mk: {
+        nav_home:'Дома', nav_about:'За нас', nav_services:'Услуги', nav_contact:'Контакт',
+        hero_title:'Вашите права, стручно заштитени',
+        hero_sub:'Посветено правно застапување во работно, деловно и граѓанско право.<br>Со вас сме — на секој чекор.',
+        hero_cta1:'Нашите услуги', hero_cta2:'Контактирај нè', scroll:'Скролај',
+        about_title:'За нашата канцеларија',
+        about_p1:'Адвокатското друштво GogoMira е канцеларија со целосен сервис посветена на заштита на правата и интересите на нашите клиенти. Со долгогодишно искуство во повеќе области на правото, нудиме приспособени правни решенија за физички и правни лица.',
+        about_p2:'Нашиот тим на адвокати комбинира длабока правна експертиза со пристап насочен кон клиентот. Без разлика дали се соочувате со работен спор, деловен предизвик или граѓанска тужба — ние сме ваш доверлив партнер, фокусиран на постигнување на најдобриот можен исход за вас.',
+        feat1:'Работно право', feat2:'Деловно право', feat3:'Граѓанска парница',
+        feat4:'Договорно право', feat5:'Право на недвижности', feat6:'Наплата на долгови',
+        about_btn:'Нашите услуги',
+        why_title:'Зошто нас',
+        why_sub:'Нудиме искусно, клиентски фокусирано правно застапување во повеќе области на правото — со интегритет, доверливост и посветеност.',
+        w1_title:'Искусни адвокати', w1_desc:'Нашите адвокати донесуваат долгогодишно искуство во работно, деловно, граѓанско право и право на недвижности.',
+        w2_title:'Навременост и ефикасност', w2_desc:'Разбираме дека правните прашања се временски чувствителни. Дејствуваме брзо и ве информираме на секој чекор.',
+        w3_title:'Докажани резултати', w3_desc:'Успешно сме решиле стотици случаи — од сложени деловни спорови до индивидуални работни тужби.',
+        w4_title:'Клиентот на прво место', w4_desc:'Вашите интереси се наш приоритет. Слушаме внимателно, советуваме искрено и работиме неуморно за заштита на вашите права.',
+        w5_title:'Транспарентни хонорари', w5_desc:'Веруваме во јасна и искрена комуникација за трошоците. Никакви скриени такси — само директни правни совети.',
+        w6_title:'Строга доверливост', w6_desc:'Секој предмет се обработува со целосна дискреција. Вашите информации и вашиот случај остануваат строго доверливи.',
+        svc_title:'Наши Услуги', svc_sub:'Нудиме сеопфатна правна поддршка во повеќе области на правото.',
+        stat1:'Решени случаи', stat2:'Задоволни клиенти', stat3:'Години искуство', stat4:'Области на право',
+        ct_title:'Контактирајте нè', ct_sub:'Имате правно прашање или ви треба застапување? Контактирајте нè за доверлива консултација.',
+        ct_info:'Информации за контакт', ct_addr_label:'Адреса', ct_phone_label:'Телефон',
+        ct_email_label:'Е-пошта', ct_hours_label:'Работно време',
+        ct_hours_val:'Пон – Пет: 9:00 – 18:00<br>Саб: 10:00 – 14:00',
+        form_name:'Вашето ime', form_email:'Вашата е-пошта', form_subject:'Предмет',
+        form_msg:'Вашата порака', form_send:'Испрати порака',
+        ft_about:'Адвокатското друштво GogoMira нуди сеопфатни правни услуги во работно, деловно, граѓанско право и право на недвижности. Посветени сме на заштита на вашите права со стручност и интегритет.',
+        ft_links:'Брзи врски', ft_about_us:'За нас',
+        ft_copy:'© 2026 GogoMira. Сите права задржани.',
+        acc1_h:'Работни односи', acc2_h:'Облигациони односи', acc3_h:'Деловно право',
+        acc4_h:'Парница и арбитража', acc5_h:'Наплата на долг',
+        acc6_h:'Недвижности и градежништво', acc7_h:'Консултантски услуги', acc8_h:'Надомест на штета',
+        acc:[
+          {p1:'Спецификите на пазарот на труд им овозможуваат на работодавачите да применуваат мерки кои се спротивни на важечките закони. Честопати, поради непознавање на применливите одредби, работодавачите може да се најдат во позиција да ги повредуваат правата на своите вработени.',p2:'Правилно уредениот работен процес претставува бенефит за двете договорни страни, продуцирајќи поповолна работна средина и финансиски придобивки за бизнисот.',items:['Подготовка и анализа на договори за вработување и менаџерски договори','Отказ на договор за вработување','Застапување пред надлежните органи','Постапка за вработување и престој на странци','Постапка за престанок на работен однос и преструктуирање','Права при заштита од конкурентско дејствување','Изготвување на правилници, одлуки и интерни акти','Застапување пред судови во постапки од работен однос']},
+          {p1:'Писмените договори се начин преку кој договорните страни ќе го гарантираат остварувањето на предвидените цели и интереси. Правилно и сеопфатно составениот договор или правно дело ќе овозможи долготрајно одржување и развој на граѓанскиот или деловниот однос на договорните страни.',p2:'Доколку самиот договор е правилно составен или добро разбран затоа што е сеопфатно анализиран, странките ќе бидат во можност да избегнат долги и скапи судски постапки.',items:['Договори за продажба, подарок и други договори за располагање на имот','Договори за размена и физичка делба на недвижен имот','Договори за закуп и послуга','Договори за застапување и посредување','Договори за залог','Договори за уредување на меѓусебни односи','Други именувани и неименувани договори']},
+          {p1:'Секојдневните бизнис интеракции продуцираат голем број на правни прашања. За воспоставување и уредување на еден деловен однос на професионален начин, со цел долготрајност, неопходна е професионална правна поддршка.',p2:'Нашата адвокатска канцеларија како овластен регистрационен агент во Централниот регистар ги има спроведено сите видови на промени брзо, професионално и по цена адекватна на пазарот.',items:['Основање на друштва и подружници на странски друштва','Регистрација на здруженија на граѓани и фондации','Промени на овластени лица, седиште, основачки акти и други податоци','Организирање и промена на подружници','Ликвидација на друштва и подружници','Запишување и промени на странски директни инвестиции','Сите останати постапки за корпоративни промени']},
+          {p1:'Нашата адвокатска канцеларија е определена дека секој спор треба да биде разрешен во најбрз можен рок и по вонсудски пат. Доколку постои можност за компромисно и прифатливо решение, сметаме дека одењето на суд е скапо, одзема многу време и го прави исходот несигурен.',p2:'Во услови кога судска постапка е неизбежна, нашата адвокатска канцеларија ќе ги застапува Вашите интереси и ќе се вложи за добивање на брз и посакуван исход.',items:['Парично побарување','Трговски спорови','Осигурување','Надомест на штета (материјална и нематеријална)','Работни односи','Сопственост и други стварни права','Семејни и брачни спорови (развод на брак)']},
+          {p1:'Доколку Вашата фирма во моментот има побарувања кон своите клиенти или потрошувачи, ние како адвокат за наплата на долг ќе Ви помогнеме да го наплатите побарувањето. Дејствуваме брзо и професионално — и по вонсудски и по судски пат.',p2:'Во нашето долгогодишно искуство за наплата на побарувања имаме стекнато блиски релации со вешти лица кои можат да изработат стручно вештачење кое би ги потврдило основаноста и висината на долгот.',items:['Консултации во однос на наплата на парично побарување','Застапување пред суд или нотар','Застапување пред извршител','Други дејствија поврзани со наплата на побарувања']},
+          {p1:'Познавањето на законите и домашните пракси е од огромно значење кога се во прашање недвижностите, како и сите права и обврски кои произлегуваат од нивното користење, располагање и ограничување.',p2:'Во однос на градежништвото, сметаме дека најголемиот успех е навременото избегнување на евентуалните штетни последици за нашите клиенти — инвеститори, давајќи правна помош до „обезбедување на имотен лист".',items:['Планирање и проектирање','Изградба и развој','Финансии и даночење','Обезбедување на дозволи и одобрение за градење','Изготвување и анализа на правна документација','Застапување пред надлежни органи']},
+          {p1:'Правните ентитети во секојдневието се среќаваат со правни прашања кои не претставуваат стандардни предизвици на работењето. Ангажманот на адвокатска канцеларија ќе значи заштеда на време и средства.',p2:'Нашето искуство стекнато преку консултирање на различни клиенти од различни сектори ќе Ви овозможи на правилен и брз начин да ги донесете сите одлуки за реализација на Вашиот бизнис интерес.',items:['Ревидирање и изготвување на договори и други правни акти','Работни односи','Деловно право','Облигациони односи','Имотно-правни прашања','Останати области']},
+          {p1:'Без разлика како е настанат, штетниот настан секогаш е непредвидлив и предизвикува последици за оштетениот. Регулативата предвидува дека имотот на секое лице мора да биде доведен во онаа состојба како штетата никогаш да не се ни случила — односно предвидува право на сатисфакција.',items:['Штета настаната поради оштетување — намалување на имотот','Штета поради изгубена заработувачка / добивка','Нематеријална штета предизвикана поради повреда на личните права','Надомест на штета при осигурување']},
+        ],
+      },
+      sq: {
+        nav_home:'Kryefaqja', nav_about:'Rreth nesh', nav_services:'Shërbime', nav_contact:'Kontakt',
+        hero_title:'Të drejtat tuaja, të mbrojtura me ekspertizë',
+        hero_sub:'Përfaqësim ligjor i dedikuar në të drejtën e punës, tregtare dhe civile.<br>Ne jemi pranë jush — në çdo hap.',
+        hero_cta1:'Shërbimet tona', hero_cta2:'Na kontaktoni', scroll:'Rrëshqit',
+        about_title:'Rreth firmës sonë',
+        about_p1:'Firma e avokatisë GogoMira është një praktikë ligjore me shërbim të plotë e përkushtuar ndaj mbrojtjes së të drejtave dhe interesave të klientëve tanë. Me vite përvojë në fusha të shumta të ligjit, ofrojmë zgjidhje juridike të përshtatura për individë dhe biznese.',
+        about_p2:'Ekipi ynë i juristëve kombinon ekspertizë të thellë juridike me qasje të orientuar nga klienti. Pavarësisht nëse përballeni me një mosmarrëveshje pune, sfidë biznesi apo kërkesë civile — ne jemi partneri juaj i besuar, i fokusuar në arritjen e rezultatit më të mirë.',
+        feat1:'E drejta e punës', feat2:'E drejta tregtare', feat3:'Gjyqësi civile',
+        feat4:'E drejta e kontratave', feat5:'E drejta e pasurive', feat6:'Mbledhja e borxheve',
+        about_btn:'Shërbimet tona',
+        why_title:'Pse të na zgjidhni',
+        why_sub:'Ofrojmë përfaqësim ligjor me eksperiencë dhe të orientuar nga klienti — me integritet, konfidencialitet dhe përkushtim.',
+        w1_title:'Avokatë me eksperiencë', w1_desc:'Avokatët tanë sjellin vite përvojë në të drejtën e punës, tregtare, civile dhe të pasurive të paluajtshme.',
+        w2_title:'Në kohë dhe efikas', w2_desc:'Kuptojmë se çështjet juridike janë sensible ndaj kohës. Veprojmë shpejt dhe ju informojmë në çdo fazë.',
+        w3_title:'Rezultate të dëshmuara', w3_desc:'Kemi zgjidhur me sukses qindra raste — nga mosmarrëveshjet komplekse tregtare deri te kërkesat individuale.',
+        w4_title:'Klienti në radhë të parë', w4_desc:'Interesat tuaja janë prioriteti ynë. Dëgjojmë me kujdes, këshillojmë me ndershmëri dhe punojmë pa u lodhur për të mbrojtur të drejtat tuaja.',
+        w5_title:'Tarifa transparente', w5_desc:'Besojmë në komunikim të qartë dhe të ndershëm për kostot. Pa tarifa të fshehura — vetëm këshilla juridike të besueshme.',
+        w6_title:'Konfidencialitet i rreptë', w6_desc:'Çdo çështje trajtohet me diskrecion të plotë. Informacionet dhe çështja juaj mbeten rreptësisht konfidenciale.',
+        svc_title:'Shërbimet tona', svc_sub:'Ofrojmë mbështetje ligjore gjithëpërfshirëse në fusha të shumta të së drejtës.',
+        stat1:'Raste të zgjidhura', stat2:'Klientë të kënaqur', stat3:'Vite eksperience', stat4:'Fusha ligjore',
+        ct_title:'Na kontaktoni', ct_sub:'Keni një pyetje juridike ose keni nevojë për përfaqësim? Na kontaktoni për një konsultim konfidencial.',
+        ct_info:'Informacione kontakti', ct_addr_label:'Adresë', ct_phone_label:'Telefon',
+        ct_email_label:'Email', ct_hours_label:'Orët e punës',
+        ct_hours_val:'Hën – Pre: 9:00 – 18:00<br>Sht: 10:00 – 14:00',
+        form_name:'Emri juaj', form_email:'Email-i juaj', form_subject:'Subjekti',
+        form_msg:'Mesazhi juaj', form_send:'Dërgoni mesazhin',
+        ft_about:'Firma e avokatisë GogoMira ofron shërbime juridike gjithëpërfshirëse në të drejtën e punës, tregtare, civile dhe të pasurive të paluajtshme. Të përkushtuar ndaj mbrojtjes së të drejtave tuaja me ekspertizë dhe integritet.',
+        ft_links:'Lidhje të shpejta', ft_about_us:'Rreth nesh',
+        ft_copy:'© 2026 GogoMira. Të gjitha të drejtat e rezervuara.',
+        acc1_h:'Marrëdhëniet e punës', acc2_h:'E drejta e detyrimeve', acc3_h:'E drejta tregtare',
+        acc4_h:'Gjyqësi dhe arbitrazh', acc5_h:'Mbledhja e borxheve',
+        acc6_h:'Pasuria e paluajtshme dhe ndërtimi', acc7_h:'Shërbime këshillimore', acc8_h:'Kompensimi i dëmeve',
+        acc:[
+          {p1:'Specifika e tregut të punës u mundëson punëdhënësve të zbatojnë masa që bien ndesh me ligjet në fuqi. Shpesh, për shkak të mosnjohjes së dispozitave të zbatueshme, punëdhënësit mund të gjenden duke shkelur të drejtat e punonjësve të tyre.',p2:'Procesi i punës i rregulluar siç duhet është i dobishëm për të dyja palët kontraktuese, duke prodhuar një mjedis pune më të favorshëm dhe përfitime financiare për biznesin.',items:['Përgatitja dhe analiza e kontratave të punësimit dhe kontratave manageriale','Ndërprerja e kontratave të punësimit','Përfaqësimi para autoriteteve kompetente','Procedura e punësimit dhe qëndrimit të shtetasve të huaj','Procedurat e ndërprerjes dhe ristrukturimit të marrëdhënies së punës','Të drejtat e mbrojtjes nga konkurrenca','Hartimi i rregulloreve, vendimeve dhe akteve të tjera të brendshme','Përfaqësimi para gjykatave në çështjet e marrëdhënieve të punës']},
+          {p1:'Kontratat me shkrim janë mënyra nëpërmjet të cilës palët kontraktuese do të garantojnë arritjen e qëllimeve dhe interesave të parashikuara. Kontrata ose akti juridik i hartuar saktë dhe gjithëpërfshirës do të mundësojë mirëmbajtjen dhe zhvillimin afatgjatë të marrëdhënies civile ose tregtare.',p2:'Nëse kontrata është hartuar saktë ose kuptuar mirë falë analizës gjithëpërfshirëse, palët do të mund të shmangin procedura gjyqësore të gjata dhe të kushtueshme.',items:['Kontratat e shitjes, dhurimit dhe kontrata të tjera të disponimit të pasurisë','Kontratat e shkëmbimit dhe ndarjes fizike të pasurisë së paluajtshme','Kontratat e qirasë dhe huadhënies','Kontratat e përfaqësimit dhe ndërmjetësimit','Kontratat e pengut','Kontratat e rregullimit të marrëdhënieve të ndërsjella','Kontrata të tjera të emërtuara dhe të paemërtuara']},
+          {p1:'Ndërveprimet e përditshme të biznesit gjenerojnë një numër të madh çështjesh ligjore. Për të vendosur dhe rregulluar një marrëdhënie biznesi në mënyrë profesionale, është e nevojshme mbështetja ligjore profesionale.',p2:'Firma jonë e avokatisë, si agjent i autorizuar regjistrimi në Regjistrin Qendror, ka kryer të gjitha llojet e ndryshimeve shpejt, në mënyrë profesionale dhe me çmime adekuate të tregut.',items:['Themelimi i shoqërive dhe degëve të shoqërive të huaja','Regjistrimi i shoqatave civile dhe fondacioneve','Ndryshimet e personave të autorizuar, selisë dhe akteve themeluese','Organizimi dhe ndryshimi i degëve','Likuidimi i shoqërive dhe degëve','Regjistrimi i investimeve të huaja direkte','Të gjitha procedurat e tjera të ndryshimeve korporative']},
+          {p1:'Firma jonë e avokatisë është e vendosur që çdo mosmarrëveshje duhet të zgjidhet sa më shpejt dhe jashtë gjykatës. Ku ekziston mundësia e një zgjidhjeje kompromisi, besojmë se gjyqësia është e kushtueshme, kërkon shumë kohë dhe e bën rezultatin të pasigurt.',p2:'Kur procedurat gjyqësore bëhen të pashmangshme, firma jonë do të përfaqësojë interesat tuaja dhe do të punojë me zell për të arritur një rezultat të shpejtë dhe të favorshëm.',items:['Kërkesat monetare','Mosmarrëveshjet tregtare','Sigurimi','Kompensimi i dëmeve (materiale dhe jo-materiale)','Marrëdhëniet e punës','Pronësia dhe të drejtat e tjera sendore','Mosmarrëveshjet familjare dhe martesore (divorci)']},
+          {p1:'Nëse kompania juaj aktualisht ka pretendime ndaj klientëve ose konsumatorëve të saj, ne si avokat për mbledhjen e borxheve do t\'ju ndihmojmë të mbledhni pretendimin nga debitori juaj. Veprojmë shpejt dhe profesionalisht — si jashtë gjykatës ashtu edhe nëpërmjet procedurës gjyqësore.',p2:'Në përvojën tonë të gjatë të mbledhjes së borxheve, kemi krijuar marrëdhënie të ngushta me ekspertë dëshmitarë që mund të prodhojnë vlerësime profesionale duke konfirmuar vlefshmërinë dhe shumën e borxhit.',items:['Konsultime në lidhje me mbledhjen e kërkesave monetare','Përfaqësimi para gjykatës ose noterit','Përfaqësimi para një zyrtari zbatimi','Veprime të tjera të lidhura me mbledhjen e borxheve']},
+          {p1:'Njohja e ligjeve dhe praktikave vendase është shumë e rëndësishme kur bëhet fjalë për pasuritë e paluajtshme, si dhe të gjitha të drejtat dhe detyrimet që rrjedhin nga përdorimi, disponimi dhe kufizimi i tyre.',p2:'Në lidhje me ndërtimin, besojmë se suksesi më i madh qëndron në parandalimin në kohë të pasojave të mundshme të dëmshme për klientët tanë — investitorët, duke ofruar ndihmë ligjore deri në marrjen e titullit të pronës.',items:['Planifikimi dhe projektimi','Ndërtimi dhe zhvillimi','Financat dhe taksimi','Marrja e lejeve dhe miratimeve të ndërtimit','Hartimi dhe analiza e dokumentacionit ligjor','Përfaqësimi para autoriteteve kompetente']},
+          {p1:'Subjektet ligjore në veprimtarinë e tyre të përditshme hasin çështje ligjore që nuk përfaqësojnë sfida standarde të biznesit. Angazhimi i një firme avokatish do të kursejë kohë dhe burime për zgjidhjen e këtyre çështjeve.',p2:'Përvoja jonë e fituar nëpërmjet konsultimit të klientëve të ndryshëm nga sektorë të ndryshëm do t\'ju lejojë të merrni të gjitha vendimet e biznesit shpejt dhe saktë.',items:['Rishikimi dhe hartimi i kontratave dhe akteve të tjera ligjore','Marrëdhëniet e punës','E drejta tregtare','Detyrimet kontraktuale','Çështjet e të drejtës pronësore','Fusha të tjera']},
+          {p1:'Pavarësisht se si ka ndodhur, ngjarja dëmshme është gjithmonë e paparashikueshme dhe shkakton pasoja për palën e dëmtuar. Ligji parashikon se pasuria e çdo personi duhet të rivendoset në gjendjen sikur dëmi të mos ketë ndodhur kurrë — duke garantuar të drejtën e satisfaksionit.',items:['Dëmi i shkaktuar nga dëmtimi — ulja e pasurisë','Dëmi për shkak të fitimit / të ardhurave të humbura','Dëmi jomaterial i shkaktuar nga shkelja e të drejtave personale','Kompensimi i dëmit në sigurim']},
+        ],
+      },
+      tr: {
+        nav_home:'Ana Sayfa', nav_about:'Hakkımızda', nav_services:'Hizmetler', nav_contact:'İletişim',
+        hero_title:'Haklarınız, Uzman Ellerde Güvende',
+        hero_sub:'İş, ticaret ve medeni hukukta adanmış hukuki temsil.<br>Her adımda yanınızdayız.',
+        hero_cta1:'Hizmetlerimiz', hero_cta2:'Bize Ulaşın', scroll:'Kaydır',
+        about_title:'Büromuz Hakkında',
+        about_p1:'GogoMira Hukuk Bürosu, müvekkillerimizin hak ve çıkarlarını korumaya adanmış tam hizmet veren bir hukuk bürosudur. Hukukun birçok alanındaki yıllarca süren deneyimimizle, bireyler ve işletmeler için özelleştirilmiş hukuki çözümler sunuyoruz.',
+        about_p2:'Avukat ekibimiz, derin hukuki uzmanlığı müvekkil odaklı bir yaklaşımla birleştirmektedir. İster bir iş uyuşmazlığıyla, ister bir ticaret sorunuyla, ister bir hukuki talep ile karşı karşıya olun — sizin için en iyi sonucu elde etmeye odaklanmış güvenilir ortağınızız.',
+        feat1:'İş Hukuku', feat2:'Ticaret Hukuku', feat3:'Medeni Yargılama',
+        feat4:'Sözleşme Hukuku', feat5:'Gayrimenkul Hukuku', feat6:'Alacak Tahsili',
+        about_btn:'Hizmetlerimiz',
+        why_title:'Neden Bizi Seçmelisiniz',
+        why_sub:'Bütünlük, gizlilik ve kararlılıkla hukukun birçok alanında deneyimli, müvekkil odaklı hukuki temsil sunuyoruz.',
+        w1_title:'Deneyimli Avukatlar', w1_desc:'Avukatlarımız iş, ticaret, medeni ve gayrimenkul hukuku alanlarında yıllarca süren deneyim taşımaktadır.',
+        w2_title:'Zamanında ve Verimli', w2_desc:'Hukuki meselelerin zamana duyarlı olduğunun farkındayız. Hızlı hareket eder ve davanızın her aşamasında sizi bilgilendiririz.',
+        w3_title:'Kanıtlanmış Başarı', w3_desc:'Karmaşık ticari anlaşmazlıklardan bireysel iş davalarına kadar yüzlerce davayı başarıyla çözdük.',
+        w4_title:'Müvekkil Önce', w4_desc:'Çıkarlarınız bizim önceliğimizdir. Dikkatle dinler, dürüstçe tavsiye eder ve haklarınızı korumak için yorulmadan çalışırız.',
+        w5_title:'Şeffaf Ücretler', w5_desc:'Maliyetler hakkında açık ve dürüst iletişime inanıyoruz. Gizli ücret yok — yalnızca güvenilir hukuki tavsiye.',
+        w6_title:'Tam Gizlilik', w6_desc:'Her dava tam bir takdiriyetle ele alınır. Bilgileriniz ve davanız her zaman kesinlikle gizli kalır.',
+        svc_title:'Hizmetlerimiz', svc_sub:'Hukukun birçok alanında kapsamlı hukuki destek sunuyoruz.',
+        stat1:'Çözülen Dava', stat2:'Memnun Müvekkil', stat3:'Yıllık Deneyim', stat4:'Hukuk Alanı',
+        ct_title:'İletişime Geçin', ct_sub:'Hukuki sorunuz mu var veya temsile mi ihtiyacınız var? Gizli danışmanlık için bizimle iletişime geçin.',
+        ct_info:'İletişim Bilgileri', ct_addr_label:'Adres', ct_phone_label:'Telefon',
+        ct_email_label:'E-posta', ct_hours_label:'Çalışma Saatleri',
+        ct_hours_val:'Pzt – Cum: 09:00 – 18:00<br>Cmt: 10:00 – 14:00',
+        form_name:'Adınız', form_email:'E-posta adresiniz', form_subject:'Konu',
+        form_msg:'Mesajınız', form_send:'Mesaj Gönder',
+        ft_about:'GogoMira Hukuk Bürosu, iş, ticaret, medeni ve gayrimenkul hukuku alanlarında kapsamlı hukuki hizmetler sunmaktadır. Uzmanlık ve bütünlükle haklarınızı korumaya kararlıyız.',
+        ft_links:'Hızlı Bağlantılar', ft_about_us:'Hakkımızda',
+        ft_copy:'© 2026 GogoMira. Tüm hakları saklıdır.',
+        acc1_h:'İş İlişkileri', acc2_h:'Borçlar Hukuku', acc3_h:'Ticaret Hukuku',
+        acc4_h:'Dava ve Tahkim', acc5_h:'Alacak Tahsili',
+        acc6_h:'Gayrimenkul ve İnşaat', acc7_h:'Danışmanlık Hizmetleri', acc8_h:'Tazminat',
+        acc:[
+          {p1:'İşgücü piyasasının özellikleri, işverenlerin yürürlükteki yasalara aykırı önlemler uygulamasına olanak tanımaktadır. Çoğu zaman, uygulanabilir hükümlerin bilinmemesi nedeniyle işverenler, çalışanlarının haklarını ihlal eden bir konumda bulunabilir.',p2:'Doğru şekilde düzenlenmiş bir çalışma süreci, her iki sözleşme tarafı için de bir kazanımdır ve daha elverişli bir çalışma ortamı ile işletme için finansal faydalar sağlar.',items:['İş sözleşmelerinin ve yönetim sözleşmelerinin hazırlanması ve analizi','İş sözleşmesinin feshi','Yetkili makamlar önünde temsil','Yabancı uyrukluların istihdamı ve ikamet prosedürleri','İş ilişkisinin sona erdirilmesi ve yeniden yapılandırma prosedürleri','Rekabet yasağı koruma hakları','Yönetmelik, karar ve diğer iç düzenlemelerin hazırlanması','İş hukuku uyuşmazlıklarında mahkemelerde temsil']},
+          {p1:'Yazılı sözleşmeler, sözleşme taraflarının öngörülen hedef ve çıkarların gerçekleşmesini güvence altına alacağı yoldur. Doğru ve kapsamlı biçimde hazırlanmış bir sözleşme, taraflar arasındaki sivil veya ticari ilişkinin uzun vadeli sürdürülmesini ve geliştirilmesini sağlayacaktır.',p2:'Sözleşme doğru hazırlanmış veya kapsamlı analiz sayesinde iyi anlaşılmışsa taraflar uzun ve maliyetli dava süreçlerinden kaçınabilecektir.',items:['Satış, bağış ve diğer mülk tasarruf sözleşmeleri','Gayrimenkul takas ve fiziksel bölünme sözleşmeleri','Kira ve ödünç sözleşmeleri','Temsil ve arabuluculuk sözleşmeleri','Rehin sözleşmeleri','Karşılıklı ilişkilerin düzenlenmesine dair sözleşmeler','Diğer adlı ve adsız sözleşmeler']},
+          {p1:'Günlük iş etkileşimleri çok sayıda hukuki soru doğurmaktadır. Bir iş ilişkisini profesyonel bir şekilde kurabilmek ve düzenleyebilmek için profesyonel hukuki destek zorunludur.',p2:'Hukuk büromuz, Merkezi Sicil\'de yetkili tescil acentesi olarak tüm değişiklikleri hızlı, profesyonel ve piyasaya uygun fiyatlarla gerçekleştirmiştir.',items:['Şirket kuruluşları ve yabancı şirketlerin şubeleri','Sivil toplum kuruluşları ve vakıfların tescili','Yetkili kişi, merkez ve kuruluş belgelerinde değişiklikler','Şubelerin organizasyonu ve değişimi','Şirket ve şubelerin tasfiyesi','Yabancı doğrudan yatırımların tescili ve değişimi','Tüm diğer kurumsal değişiklik prosedürleri']},
+          {p1:'Hukuk büromuz her uyuşmazlığın mümkün olan en kısa sürede ve mahkeme dışında çözülmesi gerektiğine inanmaktadır. Uzlaşı çözümünün mümkün olduğu durumlarda mahkemeye gitmenin maliyetli, zaman alıcı ve sonucu belirsiz kıldığını düşünüyoruz.',p2:'Mahkeme süreçlerinin kaçınılmaz hale geldiği durumlarda büromuz çıkarlarınızı temsil edecek ve hızlı ve arzu edilen bir sonuç elde etmek için özenle çalışacaktır.',items:['Parasal talepler','Ticari uyuşmazlıklar','Sigorta','Maddi ve manevi tazminat','İş ilişkileri','Mülkiyet ve diğer ayni haklar','Aile ve evlilik uyuşmazlıkları (boşanma)']},
+          {p1:'Şirketinizin müşterilerinizden veya tüketicilerinden alacakları varsa, alacak tahsilat avukatı olarak borçlunuzdan alacağınızı tahsil etmenize yardımcı olacağız. Hem mahkeme dışı hem de yargısal yollarla hızlı ve profesyonel şekilde hareket ediyoruz.',p2:'Alacak tahsilatındaki uzun yıllık deneyimimizde, borcun geçerliliğini ve miktarını teyit edecek profesyonel değerlendirmeler hazırlayabilecek bilirkişilerle yakın ilişkiler geliştirdik.',items:['Parasal alacak tahsili konusunda danışmanlık','Mahkeme veya noter önünde temsil','İcra müdürlüğü önünde temsil','Alacak tahsilatıyla ilgili diğer işlemler']},
+          {p1:'Gayrimenkul söz konusu olduğunda yasal düzenlemeler ve yerel uygulamaların bilinmesi büyük önem taşımaktadır; kullanım, tasarruf ve kısıtlamadan doğan tüm hak ve yükümlülükler dahil olmak üzere.',p2:'İnşaat konusunda en büyük başarının, müşterilerimiz olan yatırımcılar için olası zararlı sonuçların zamanında önlenmesi olduğuna inanıyoruz; tapu senedi alınmasına kadar hukuki yardım sağlıyoruz.',items:['Planlama ve proje tasarımı','İnşaat ve geliştirme','Finansman ve vergilendirme','İnşaat izin ve onaylarının alınması','Hukuki belgelerin hazırlanması ve analizi','Yetkili makamlar önünde temsil']},
+          {p1:'Tüzel kişiler günlük faaliyetlerinde standart iş zorluklarını temsil etmeyen hukuki sorularla karşılaşmaktadır. Bu hukuki sorunların üstesinden gelmeniz için bir hukuk bürosunu görevlendirmek zaman ve kaynak tasarrufu sağlayacaktır.',p2:'Farklı sektörlerdeki çeşitli müşterilere danışmanlık yaparak edindiğimiz deneyim, iş çıkarlarınızın gerçekleştirilmesine ilişkin tüm kararları hızlı ve doğru bir şekilde almanıza imkan tanıyacaktır.',items:['Sözleşmelerin ve diğer hukuki belgelerin gözden geçirilmesi ve hazırlanması','İş ilişkileri','Ticaret hukuku','Sözleşme yükümlülükleri','Mülkiyet hukuku meseleleri','Diğer alanlar']},
+          {p1:'Nasıl meydana geldiğinden bağımsız olarak, zararlı bir olay her zaman öngörülemez ve zarar görende sonuçlara yol açar. Mevzuat, her kişinin mülkünün zarar hiç gerçekleşmemiş gibi önceki durumuna kavuşturulması gerektiğini öngörmektedir — zarara uğrayan herkes için tatmin hakkını güvence altına alarak.',items:['Mülkün azalmasına yol açan zararlar','Kaybedilen kazanç / kâr nedeniyle uğranılan zarar','Kişisel hakların ihlaline bağlı manevi zarar','Sigorta kapsamında tazminat']},
+        ],
+      },
+    };
+
+    function applyLang(lang) {
+      const t = T[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+      document.querySelectorAll('[data-acc-body]').forEach(el => {
+        const i = parseInt(el.dataset.accBody) - 1;
+        const d = t.acc[i];
+        if (!d) return;
+        let html = d.p1 ? `<p>${d.p1}</p>` : '';
+        if (d.p2) html += `<p>${d.p2}</p>`;
+        html += '<ul>' + d.items.map(item => `<li>${item}</li>`).join('') + '</ul>';
+        el.innerHTML = html;
+        // update open accordion height if needed
+        const body = el.closest('.acc-body');
+        if (body && body.style.maxHeight) body.style.maxHeight = body.scrollHeight + 'px';
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    applyLang('en');
+
+    // ── ACCORDION ──
+    document.querySelectorAll('.acc-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.acc-item');
+        const body = item.querySelector('.acc-body');
+        const isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.acc-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.acc-body').style.maxHeight = null;
+        });
+        // open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

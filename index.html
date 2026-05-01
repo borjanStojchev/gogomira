@@ -958,18 +958,18 @@
     .lang-btn {
       background: transparent;
       border: 1px solid #ccc;
-      color: #555;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 4px 8px;
+      padding: 4px 6px;
       cursor: pointer;
-      transition: all 0.2s;
-      border-radius: 2px;
+      transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+      border-radius: 4px;
+      opacity: 0.55;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
     }
-    .lang-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
-    .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .lang-btn img { display: block; border-radius: 2px; }
+    .lang-btn:hover { border-color: var(--accent); opacity: 1; transform: scale(1.12); }
+    .lang-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(232,168,56,0.3); opacity: 1; background: rgba(232,168,56,0.08); }
 
     @media (max-width: 1024px) {
       .features-grid, .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1003,10 +1003,10 @@
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
       <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="mk">MK</button>
-        <button class="lang-btn" data-lang="sq">SQ</button>
-        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn active" data-lang="en" title="English"><img src="https://flagcdn.com/w20/gb.png" width="20" height="14" alt="EN"></button>
+        <button class="lang-btn" data-lang="mk" title="Македонски"><img src="https://flagcdn.com/w20/mk.png" width="20" height="14" alt="MK"></button>
+        <button class="lang-btn" data-lang="sq" title="Shqip"><img src="https://flagcdn.com/w20/al.png" width="20" height="14" alt="SQ"></button>
+        <button class="lang-btn" data-lang="tr" title="Türkçe"><img src="https://flagcdn.com/w20/tr.png" width="20" height="14" alt="TR"></button>
       </div>
     </div>
   </nav>

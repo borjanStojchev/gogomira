@@ -52,14 +52,16 @@
       height: 70px;
     }
     .nav-logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--dark);
       text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
     }
-    .nav-logo span { color: var(--accent); }
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover img { opacity: 0.75; }
     .nav-links {
       display: flex;
       gap: 32px;
@@ -733,27 +735,24 @@
     #contact { background: var(--light); }
     #contact .section-title h2 { color: var(--dark); }
     #contact .section-title p { color: #777; }
-    .contact-grid {
+    .contact-cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-    .contact-info h4 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .contact-item {
       display: flex;
-      gap: 16px;
-      margin-bottom: 24px;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 36px 20px;
+      gap: 12px;
     }
     .contact-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background: var(--accent);
       border-radius: 50%;
       display: flex;
@@ -761,18 +760,25 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .contact-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .contact-icon svg { width: 20px; height: 20px; fill: #fff; }
     .contact-item strong {
       display: block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--dark);
-      margin-bottom: 3px;
     }
     .contact-item span {
       font-size: 13px;
       color: #777;
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .contact-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 420px) {
+      .contact-cards { grid-template-columns: 1fr; }
     }
     .contact-form input,
     .contact-form textarea {
@@ -820,9 +826,13 @@
       border-top: 1px solid #e8e8e8;
     }
     .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 40px;
+    }
+    .footer-grid .footer-col:first-child {
+      max-width: 420px;
     }
     .footer-col h5 {
       font-size: 14px;
@@ -971,22 +981,158 @@
     .lang-btn:hover { border-color: var(--accent); opacity: 1; transform: scale(1.12); }
     .lang-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(232,168,56,0.3); opacity: 1; background: rgba(232,168,56,0.08); }
 
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 16px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE DRAWER ── */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      z-index: 999;
+      padding: 24px 24px 32px;
+      flex-direction: column;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.25s;
+    }
+    .nav-drawer.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .nav-drawer a {
+      display: block;
+      padding: 14px 0;
+      color: #444;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.2s;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--accent); }
+
     @media (max-width: 1024px) {
-      .features-grid, .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { flex-direction: column; gap: 30px; }
+      .footer-grid .footer-col:first-child { max-width: 100%; }
     }
 
     @media (max-width: 768px) {
       #navbar { padding: 0 20px; }
       .nav-links { display: none; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .blog-grid, .testimonials-grid { grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-hamburger { display: flex; }
+      .nav-drawer { display: flex; }
+
+      section { padding: 56px 0; }
+      .container { padding: 0 20px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-img img { height: 260px; }
+      .about-features { grid-template-columns: 1fr; }
+
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .feature-box { padding: 24px 16px; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-num { font-size: 38px; }
+
+      .contact-grid { grid-template-columns: 1fr; }
       .contact-form .form-row { grid-template-columns: 1fr; }
+
+      .hero-content h1 { font-size: clamp(28px, 8vw, 42px); }
+      .hero-content p { font-size: 14px; }
+      .btn-primary, .btn-outline { padding: 12px 24px; font-size: 12px; }
+      .btn-outline { margin-left: 8px; }
+
+      .section-title h2 { font-size: 22px; }
+
+      .lang-switcher { margin-left: 0; }
+    }
+
+    @media (max-width: 420px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .btn-outline { margin-left: 0; margin-top: 12px; }
+      .hero-content { display: flex; flex-direction: column; align-items: center; }
+    }
+
+    /* ── HERO LOGO ── */
+    .hero-logo {
+      width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto 28px;
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+    }
+    @media (max-width: 768px) {
+      .hero-logo { width: 140px; margin-bottom: 20px; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.from-left  { transform: translateX(-40px); }
+    .reveal.from-right { transform: translateX(40px); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translate(0);
+    }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-stagger.visible > *:nth-child(1)  { transition-delay: 0.05s; }
+    .reveal-stagger.visible > *:nth-child(2)  { transition-delay: 0.13s; }
+    .reveal-stagger.visible > *:nth-child(3)  { transition-delay: 0.21s; }
+    .reveal-stagger.visible > *:nth-child(4)  { transition-delay: 0.29s; }
+    .reveal-stagger.visible > *:nth-child(5)  { transition-delay: 0.37s; }
+    .reveal-stagger.visible > *:nth-child(6)  { transition-delay: 0.45s; }
+    .reveal-stagger.visible > *:nth-child(7)  { transition-delay: 0.53s; }
+    .reveal-stagger.visible > *:nth-child(8)  { transition-delay: 0.61s; }
+    .reveal-stagger.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-stagger > * { transition: none; opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -995,21 +1141,32 @@
   <!-- NAVBAR -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Gogo<span>Mira</span></a>
+      <a href="#" class="nav-logo"><img id="nav-logo" src="logo-en.png" alt="Logo"></a>
       <ul class="nav-links">
         <li><a href="#hero" data-i18n="nav_home">Home</a></li>
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#services" data-i18n="nav_services">Services</a></li>
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
-      <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="en" title="English"><img src="https://flagcdn.com/w20/gb.png" width="20" height="14" alt="EN"></button>
-        <button class="lang-btn" data-lang="mk" title="Македонски"><img src="https://flagcdn.com/w20/mk.png" width="20" height="14" alt="MK"></button>
-        <button class="lang-btn" data-lang="sq" title="Shqip"><img src="https://flagcdn.com/w20/al.png" width="20" height="14" alt="SQ"></button>
-        <button class="lang-btn" data-lang="tr" title="Türkçe"><img src="https://flagcdn.com/w20/tr.png" width="20" height="14" alt="TR"></button>
+      <div style="display:flex;align-items:center;">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en" title="English"><img src="https://flagcdn.com/w20/gb.png" width="20" height="14" alt="EN"></button>
+          <button class="lang-btn" data-lang="mk" title="Македонски"><img src="https://flagcdn.com/w20/mk.png" width="20" height="14" alt="MK"></button>
+          <button class="lang-btn" data-lang="sq" title="Shqip"><img src="https://flagcdn.com/w20/al.png" width="20" height="14" alt="SQ"></button>
+          <button class="lang-btn" data-lang="tr" title="Türkçe"><img src="https://flagcdn.com/w20/tr.png" width="20" height="14" alt="TR"></button>
+        </div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#hero" data-i18n="nav_home">Home</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#services" data-i18n="nav_services">Services</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -1018,6 +1175,7 @@
       <div class="hero-stars"></div>
     </div>
     <div class="hero-content">
+      <img id="site-logo" src="logo-en.png" alt="Logo" class="hero-logo">
       <h1 data-i18n="hero_title">Your Legal Rights, Expertly Defended</h1>
       <p data-i18n="hero_sub">Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.</p>
       <a href="#about" class="btn-primary" data-i18n="hero_cta1">Our Services</a>
@@ -1033,10 +1191,10 @@
   <section id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-img">
+        <div class="about-img reveal from-left">
           <img src="https://placehold.co/600x420/e8e4e0/aa9988" alt="About GogoMira">
         </div>
-        <div class="about-text">
+        <div class="about-text reveal from-right">
           <h3 data-i18n="about_title">Who We Are</h3>
           <p data-i18n="about_p1">GogoMira is a full-service digital agency dedicated to helping businesses grow through creative strategies and cutting-edge technology. We believe that every brand deserves a unique and compelling presence.</p>
           <p data-i18n="about_p2">Our team of experts combines deep industry knowledge with innovative thinking to deliver results that matter. From brand identity to digital campaigns, we are your partner every step of the way.</p>
@@ -1077,12 +1235,12 @@
   <!-- WHY CHOOSE US -->
   <section id="why">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title reveal">
         <h2 data-i18n="why_title">Why Choose Us</h2>
         <div class="divider"></div>
         <p data-i18n="why_sub">We combine creativity, technology, and data to deliver extraordinary results for our clients.</p>
       </div>
-      <div class="features-grid">
+      <div class="features-grid reveal-stagger">
         <div class="feature-box">
           <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
           <h4 data-i18n="w1_title">Expert Team</h4>
@@ -1120,12 +1278,12 @@
   <!-- SERVICES -->
   <section id="services">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title reveal">
         <h2 data-i18n="svc_title">Наши Услуги</h2>
         <div class="divider"></div>
         <p data-i18n="svc_sub">Нудиме сеопфатна правна поддршка во повеќе области на правото.</p>
       </div>
-      <div class="accordion">
+      <div class="accordion reveal-stagger">
 
         <!-- 01 -->
         <div class="acc-item">
@@ -1246,7 +1404,7 @@
   <!-- STATS -->
   <section id="stats">
     <div class="container">
-      <div class="stats-grid">
+      <div class="stats-grid reveal-stagger">
         <div class="stat-item">
           <div class="stat-num">342</div>
           <div class="stat-label" data-i18n="stat1">Projects Completed</div>
@@ -1270,43 +1428,35 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title reveal">
         <h2 data-i18n="ct_title">Get In Touch</h2>
         <div class="divider"></div>
         <p data-i18n="ct_sub">Ready to start your next project? We'd love to hear from you.</p>
       </div>
-      <div class="contact-info" style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;">
+      <div class="contact-cards reveal-stagger">
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div>
-            <strong data-i18n="ct_addr_label">Address</strong>
-            <span>42 Innovation Drive, Suite 800<br>New York, NY 10001</span>
-          </div>
+          <strong data-i18n="ct_addr_label">Address</strong>
+          <span>42 Innovation Drive, Suite 800<br>New York, NY 10001</span>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div>
-            <strong data-i18n="ct_phone_label">Phone</strong>
-            <span>+1 (212) 555-0190</span>
-          </div>
+          <strong data-i18n="ct_phone_label">Phone</strong>
+          <span>+1 (212) 555-0190</span>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div>
-            <strong data-i18n="ct_email_label">Email</strong>
-            <span>hello@gogomira.com</span>
-          </div>
+          <strong data-i18n="ct_email_label">Email</strong>
+          <span>hello@gogomira.com</span>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-          <div>
-            <strong data-i18n="ct_hours_label">Hours</strong>
-            <span data-i18n="ct_hours_val">Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 2:00 PM</span>
-          </div>
+          <strong data-i18n="ct_hours_label">Hours</strong>
+          <span data-i18n="ct_hours_val">Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 2:00 PM</span>
         </div>
       </div>
     </div>
-    <div style="width:100%;line-height:0;margin-top:60px;">
+    <div class="reveal" style="width:100%;line-height:0;margin-top:60px;">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2965.038622321821!2d21.43676667646378!3d41.99944665780728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415b00016df31%3A0x107e7c1141665b3c!2sMavrovka%20Mall!5e0!3m2!1sen!2smk!4v1777469827726!5m2!1sen!2smk" width="100%" height="420" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
@@ -1331,17 +1481,6 @@
             <li><a href="#about" data-i18n="ft_about_us">About Us</a></li>
             <li><a href="#services" data-i18n="nav_services">Services</a></li>
             <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5 data-i18n="nav_services">Services</h5>
-          <ul class="footer-links">
-            <li><a href="#" data-i18n="s1_title">Brand Identity</a></li>
-            <li><a href="#" data-i18n="s2_title">Web Design & Dev</a></li>
-            <li><a href="#" data-i18n="s3_title">Digital Marketing</a></li>
-            <li><a href="#" data-i18n="s4_title">UI/UX Design</a></li>
-            <li><a href="#" data-i18n="s5_title">Content Strategy</a></li>
-            <li><a href="#" data-i18n="s6_title">Analytics & Growth</a></li>
           </ul>
         </div>
       </div>
@@ -1586,6 +1725,11 @@
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
       document.documentElement.lang = lang;
+      const logoSrc = lang === 'mk' ? 'logo-mk.png' : 'logo-en.png';
+      const logo = document.getElementById('site-logo');
+      if (logo) logo.src = logoSrc;
+      const navLogo = document.getElementById('nav-logo');
+      if (navLogo) navLogo.src = logoSrc;
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1612,6 +1756,34 @@
         }
       });
     });
+    // ── HAMBURGER ──
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+
   </script>
 </body>
 </html>

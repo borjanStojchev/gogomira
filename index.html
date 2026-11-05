@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GogoMira</title>
+  <title>Karkalashevi and Jovanovska law office</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -81,7 +81,10 @@
     /* ── HERO ── */
     #hero {
       width: 100%;
-      height: 100vh;
+      /* at least one screen tall, but grows when the content (e.g. longer Albanian headline)
+         needs more room; top padding keeps the logo clear of the 70px fixed navbar */
+      min-height: 100vh;
+      padding: 110px 0 60px;
       position: relative;
       z-index: 99;
       overflow: hidden;
@@ -230,11 +233,12 @@
       margin-top: 24px;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr; /* every row as tall as the tallest, so one- and two-line names line up */
       gap: 12px;
     }
     .about-feature {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
       font-size: 13px;
       font-weight: 600;
@@ -249,7 +253,6 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-top: 1px;
     }
     .about-feature .check svg {
       width: 10px;
@@ -873,29 +876,6 @@
       color: #777;
       line-height: 1.8;
     }
-    .footer-links {
-      list-style: none;
-    }
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: #777;
-      text-decoration: none;
-      transition: color 0.2s, padding-left 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .footer-links a:hover {
-      color: var(--accent-dark);
-      padding-left: 4px;
-    }
-    .footer-links a::before {
-      content: '›';
-      color: var(--accent);
-    }
     .footer-social {
       display: flex;
       gap: 10px;
@@ -1190,36 +1170,72 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-img reveal from-left">
-          <img src="https://placehold.co/600x420/e8e4e0/aa9988" alt="About GogoMira">
+          <img src="https://placehold.co/600x420/e8e4e0/aa9988" alt="About Karkalashevi and Jovanovska law office">
         </div>
         <div class="about-text reveal from-right">
           <h3 data-i18n="about_title">Who We Are</h3>
-          <p data-i18n="about_p1">GogoMira is a full-service digital agency dedicated to helping businesses grow through creative strategies and cutting-edge technology. We believe that every brand deserves a unique and compelling presence.</p>
+          <p data-i18n="about_p1">Karkalashevi and Jovanovska law office is a full-service legal practice committed to protecting the rights and interests of our clients. With years of experience across multiple areas of law, we provide tailored legal solutions for individuals and businesses alike.</p>
           <p data-i18n="about_p2">Our team of experts combines deep industry knowledge with innovative thinking to deliver results that matter. From brand identity to digital campaigns, we are your partner every step of the way.</p>
           <div class="about-features">
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat1">Creative Strategy</span>
+              <span data-acc-title="1">Граѓанско право и стварно право</span>
             </div>
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat2">Brand Development</span>
+              <span data-acc-title="2">Облигационо право и надомест на штета</span>
             </div>
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat3">Digital Marketing</span>
+              <span data-acc-title="3">Семејно право</span>
             </div>
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat4">Web Development</span>
+              <span data-acc-title="4">Наследно право</span>
             </div>
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat5">UI/UX Design</span>
+              <span data-acc-title="5">Кривично право</span>
             </div>
             <div class="about-feature">
               <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-              <span data-i18n="feat6">Analytics & SEO</span>
+              <span data-acc-title="6">Сообраќајни прекршоци и прекршочно право</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="7">Право на малолетници и малолетничка правда</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="8">Трговско право и корпоративно управување</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="9">Стечајно право и стечајна постапка</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="10">Постапки пред Централен регистар (Корпоративни услуги)</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="11">Трудово право и работни односи</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="12">Управно право и даночни спорови</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="13">Извршување и наплата на побарувања</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="14">Регулирање на престој на странци (Имиграциско право)</span>
+            </div>
+            <div class="about-feature">
+              <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+              <span data-acc-title="15">Државјанство на Република Северна Македонија</span>
             </div>
           </div>
           <div style="margin-top:28px;">
@@ -1543,7 +1559,7 @@
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <strong data-i18n="ct_email_label">Email</strong>
-          <span>hello@gogomira.com</span>
+          <span>jovanovska_mira@yahoo.com</span>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
@@ -1562,7 +1578,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <h5>GogoMira</h5>
+          <h5 data-i18n="ft_name">Karkalashevi and Jovanovska law office</h5>
           <p data-i18n="ft_about">A full-service creative agency helping ambitious brands grow through strategy, design, and technology. Based in New York, working worldwide.</p>
           <div class="footer-social">
             <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -1571,20 +1587,12 @@
             <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
-        <div class="footer-col">
-          <h5 data-i18n="ft_links">Quick Links</h5>
-          <ul class="footer-links">
-            <li><a href="#about" data-i18n="ft_about_us">About Us</a></li>
-            <li><a href="#services" data-i18n="nav_services">Services</a></li>
-            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
   <footer>
     <div class="container">
-      <p data-i18n="ft_copy">&copy; 2026 GogoMira. All rights reserved.</p>
+      <p data-i18n="ft_copy">&copy; 2026 Karkalashevi and Jovanovska law office. All rights reserved.</p>
     </div>
   </footer>
 
@@ -1623,10 +1631,8 @@
         hero_sub:'Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.',
         hero_cta1:'Our Services', hero_cta2:'Contact Us',
         about_title:'About Our Firm',
-        about_p1:'GogoMira Law Firm is a full-service legal practice committed to protecting the rights and interests of our clients. With years of experience across multiple areas of law, we provide tailored legal solutions for individuals and businesses alike.',
+        about_p1:'Karkalashevi and Jovanovska law office is a full-service legal practice committed to protecting the rights and interests of our clients. With years of experience across multiple areas of law, we provide tailored legal solutions for individuals and businesses alike.',
         about_p2:'Our team of lawyers combines deep legal expertise with a client-first approach. Whether you face an employment dispute, a business challenge, or a civil claim, we are your trusted partner — focused on achieving the best possible outcome for you.',
-        feat1:'Employment Law', feat2:'Business Law', feat3:'Civil Litigation',
-        feat4:'Contract Law', feat5:'Real Estate Law', feat6:'Debt Collection',
         about_btn:'Our Services',
         why_title:'Why Choose Us',
         why_sub:'We provide experienced, client-focused legal representation across multiple areas of law — with integrity, confidentiality, and dedication.',
@@ -1644,9 +1650,9 @@
         ct_hours_val:'Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 2:00 PM',
         form_name:'Your Name', form_email:'Your Email', form_subject:'Subject',
         form_msg:'Your Message', form_send:'Send Message',
-        ft_about:'GogoMira Law Firm provides comprehensive legal services in employment, business, civil, and real estate law. Committed to protecting your rights with expertise and integrity.',
-        ft_links:'Quick Links', ft_about_us:'About Us',
-        ft_copy:'© 2026 GogoMira. All rights reserved.',
+        ft_about:'Karkalashevi and Jovanovska law office provides comprehensive legal services in employment, business, civil, and real estate law. Committed to protecting your rights with expertise and integrity.',
+        ft_name:'Karkalashevi and Jovanovska law office',
+        ft_copy:'© 2026 Karkalashevi and Jovanovska law office. All rights reserved.',
         acc:[
           {"h":"Civil & Property Law","p":["Comprehensive protection of your civil and property rights. Representation in ownership disputes, protection of possession, registration and deletion of property rights over another's assets (pledges, mortgages, easements) under the applicable substantive law, as well as legal assistance in real estate transactions and protection of the personal rights of individuals and legal entities."]},
           {"h":"Contract Law & Compensation for Damages","p":["Drafting, interpretation, and analysis of all types of civil and commercial contracts, legal advice during negotiations, and representation in the performance, termination, or annulment of contracts. Handling claims for material and non-material damages on all grounds (traffic accidents, workplace injuries, breaches of contractual obligations)."]},
@@ -1671,10 +1677,8 @@
         hero_sub:'Посветено правно застапување во работно, деловно и граѓанско право.<br>Со вас сме — на секој чекор.',
         hero_cta1:'Нашите услуги', hero_cta2:'Контактирај нè',
         about_title:'За нашата канцеларија',
-        about_p1:'Адвокатското друштво GogoMira е канцеларија со целосен сервис посветена на заштита на правата и интересите на нашите клиенти. Со долгогодишно искуство во повеќе области на правото, нудиме приспособени правни решенија за физички и правни лица.',
+        about_p1:'Каркалашеви и Јовановска адвокатска канцеларија нуди целосна правна услуга и е посветена на заштита на правата и интересите на нашите клиенти. Со долгогодишно искуство во повеќе области на правото, нудиме приспособени правни решенија за физички и правни лица.',
         about_p2:'Нашиот тим на адвокати комбинира длабока правна експертиза со пристап насочен кон клиентот. Без разлика дали се соочувате со работен спор, деловен предизвик или граѓанска тужба — ние сме ваш доверлив партнер, фокусиран на постигнување на најдобриот можен исход за вас.',
-        feat1:'Работно право', feat2:'Деловно право', feat3:'Граѓанска парница',
-        feat4:'Договорно право', feat5:'Право на недвижности', feat6:'Наплата на долгови',
         about_btn:'Нашите услуги',
         why_title:'Зошто нас',
         why_sub:'Нудиме искусно, клиентски фокусирано правно застапување во повеќе области на правото — со интегритет, доверливост и посветеност.',
@@ -1692,9 +1696,9 @@
         ct_hours_val:'Пон – Пет: 9:00 – 18:00<br>Саб: 10:00 – 14:00',
         form_name:'Вашето ime', form_email:'Вашата е-пошта', form_subject:'Предмет',
         form_msg:'Вашата порака', form_send:'Испрати порака',
-        ft_about:'Адвокатското друштво GogoMira нуди сеопфатни правни услуги во работно, деловно, граѓанско право и право на недвижности. Посветени сме на заштита на вашите права со стручност и интегритет.',
-        ft_links:'Брзи врски', ft_about_us:'За нас',
-        ft_copy:'© 2026 GogoMira. Сите права задржани.',
+        ft_about:'Каркалашеви и Јовановска адвокатска канцеларија нуди сеопфатни правни услуги во работно, деловно, граѓанско право и право на недвижности. Посветени сме на заштита на вашите права со стручност и интегритет.',
+        ft_name:'Каркалашеви и Јовановска адвокатска канцеларија',
+        ft_copy:'© 2026 Каркалашеви и Јовановска адвокатска канцеларија. Сите права задржани.',
         acc:[
           {"h":"Граѓанско право и стварно право","p":["Сеопфатна заштита на вашите граѓански и имотни права. Застапување во сопственички спорови, заштита на владение, запишување и бришење на стварни права врз туѓи ствари (залог, хипотека, службености) согласно релевантното материјално право, како и правна помош при промет со недвижности и заштита на личните права на физичките и правните лица."]},
           {"h":"Облигационо право и надомест на штета","p":["Составување, толкување и анализа на сите видови граѓански и деловни договори, правно советување при преговори и застапување при исполнување, раскинување или утврдување ништовност на договорите. Водење постапки за надомест на материјална и нематеријална штета од сите основи (сообраќајни незгоди, повреди на работа, прекршување на договорни обврски)."]},
@@ -1719,10 +1723,8 @@
         hero_sub:'Përfaqësim ligjor i dedikuar në të drejtën e punës, tregtare dhe civile.<br>Ne jemi pranë jush — në çdo hap.',
         hero_cta1:'Shërbimet tona', hero_cta2:'Na kontaktoni',
         about_title:'Rreth firmës sonë',
-        about_p1:'Firma e avokatisë GogoMira është një praktikë ligjore me shërbim të plotë e përkushtuar ndaj mbrojtjes së të drejtave dhe interesave të klientëve tanë. Me vite përvojë në fusha të shumta të ligjit, ofrojmë zgjidhje juridike të përshtatura për individë dhe biznese.',
+        about_p1:'Zyra e avokatisë Karkalashevi dhe Jovanovska është një praktikë ligjore me shërbim të plotë e përkushtuar ndaj mbrojtjes së të drejtave dhe interesave të klientëve tanë. Me vite përvojë në fusha të shumta të ligjit, ofrojmë zgjidhje juridike të përshtatura për individë dhe biznese.',
         about_p2:'Ekipi ynë i juristëve kombinon ekspertizë të thellë juridike me qasje të orientuar nga klienti. Pavarësisht nëse përballeni me një mosmarrëveshje pune, sfidë biznesi apo kërkesë civile — ne jemi partneri juaj i besuar, i fokusuar në arritjen e rezultatit më të mirë.',
-        feat1:'E drejta e punës', feat2:'E drejta tregtare', feat3:'Gjyqësi civile',
-        feat4:'E drejta e kontratave', feat5:'E drejta e pasurive', feat6:'Mbledhja e borxheve',
         about_btn:'Shërbimet tona',
         why_title:'Pse të na zgjidhni',
         why_sub:'Ofrojmë përfaqësim ligjor me eksperiencë dhe të orientuar nga klienti — me integritet, konfidencialitet dhe përkushtim.',
@@ -1740,9 +1742,9 @@
         ct_hours_val:'Hën – Pre: 9:00 – 18:00<br>Sht: 10:00 – 14:00',
         form_name:'Emri juaj', form_email:'Email-i juaj', form_subject:'Subjekti',
         form_msg:'Mesazhi juaj', form_send:'Dërgoni mesazhin',
-        ft_about:'Firma e avokatisë GogoMira ofron shërbime juridike gjithëpërfshirëse në të drejtën e punës, tregtare, civile dhe të pasurive të paluajtshme. Të përkushtuar ndaj mbrojtjes së të drejtave tuaja me ekspertizë dhe integritet.',
-        ft_links:'Lidhje të shpejta', ft_about_us:'Rreth nesh',
-        ft_copy:'© 2026 GogoMira. Të gjitha të drejtat e rezervuara.',
+        ft_about:'Zyra e avokatisë Karkalashevi dhe Jovanovska ofron shërbime juridike gjithëpërfshirëse në të drejtën e punës, tregtare, civile dhe të pasurive të paluajtshme. Të përkushtuar ndaj mbrojtjes së të drejtave tuaja me ekspertizë dhe integritet.',
+        ft_name:'Zyra e avokatisë Karkalashevi dhe Jovanovska',
+        ft_copy:'© 2026 Zyra e avokatisë Karkalashevi dhe Jovanovska. Të gjitha të drejtat e rezervuara.',
         acc:[
           {"h":"E drejta civile dhe e drejta sendore","p":["Mbrojtje gjithëpërfshirëse e të drejtave tuaja civile dhe pronësore. Përfaqësim në kontestet pronësore, mbrojtje e posedimit, regjistrim dhe fshirje e të drejtave sendore mbi sendet e huaja (peng, hipotekë, servitute) në përputhje me të drejtën materiale përkatëse, si dhe ndihmë juridike në qarkullimin e patundshmërive dhe mbrojtje e të drejtave personale të personave fizikë dhe juridikë."]},
           {"h":"E drejta e detyrimeve dhe kompensimi i dëmit","p":["Hartim, interpretim dhe analizë e të gjitha llojeve të kontratave civile dhe tregtare, këshillim juridik gjatë negociatave dhe përfaqësim në përmbushjen, zgjidhjen ose konstatimin e pavlefshmërisë së kontratave. Udhëheqje e procedurave për kompensimin e dëmit material dhe jomaterial nga të gjitha bazat (aksidente trafiku, lëndime në punë, shkelje të detyrimeve kontraktuale)."]},
@@ -1767,10 +1769,8 @@
         hero_sub:'İş, ticaret ve medeni hukukta adanmış hukuki temsil.<br>Her adımda yanınızdayız.',
         hero_cta1:'Hizmetlerimiz', hero_cta2:'Bize Ulaşın',
         about_title:'Büromuz Hakkında',
-        about_p1:'GogoMira Hukuk Bürosu, müvekkillerimizin hak ve çıkarlarını korumaya adanmış tam hizmet veren bir hukuk bürosudur. Hukukun birçok alanındaki yıllarca süren deneyimimizle, bireyler ve işletmeler için özelleştirilmiş hukuki çözümler sunuyoruz.',
+        about_p1:'Karkalashevi ve Jovanovska Hukuk Bürosu, müvekkillerimizin hak ve çıkarlarını korumaya adanmış tam hizmet veren bir hukuk bürosudur. Hukukun birçok alanındaki yıllarca süren deneyimimizle, bireyler ve işletmeler için özelleştirilmiş hukuki çözümler sunuyoruz.',
         about_p2:'Avukat ekibimiz, derin hukuki uzmanlığı müvekkil odaklı bir yaklaşımla birleştirmektedir. İster bir iş uyuşmazlığıyla, ister bir ticaret sorunuyla, ister bir hukuki talep ile karşı karşıya olun — sizin için en iyi sonucu elde etmeye odaklanmış güvenilir ortağınızız.',
-        feat1:'İş Hukuku', feat2:'Ticaret Hukuku', feat3:'Medeni Yargılama',
-        feat4:'Sözleşme Hukuku', feat5:'Gayrimenkul Hukuku', feat6:'Alacak Tahsili',
         about_btn:'Hizmetlerimiz',
         why_title:'Neden Bizi Seçmelisiniz',
         why_sub:'Bütünlük, gizlilik ve kararlılıkla hukukun birçok alanında deneyimli, müvekkil odaklı hukuki temsil sunuyoruz.',
@@ -1788,9 +1788,9 @@
         ct_hours_val:'Pzt – Cum: 09:00 – 18:00<br>Cmt: 10:00 – 14:00',
         form_name:'Adınız', form_email:'E-posta adresiniz', form_subject:'Konu',
         form_msg:'Mesajınız', form_send:'Mesaj Gönder',
-        ft_about:'GogoMira Hukuk Bürosu, iş, ticaret, medeni ve gayrimenkul hukuku alanlarında kapsamlı hukuki hizmetler sunmaktadır. Uzmanlık ve bütünlükle haklarınızı korumaya kararlıyız.',
-        ft_links:'Hızlı Bağlantılar', ft_about_us:'Hakkımızda',
-        ft_copy:'© 2026 GogoMira. Tüm hakları saklıdır.',
+        ft_about:'Karkalashevi ve Jovanovska Hukuk Bürosu, iş, ticaret, medeni ve gayrimenkul hukuku alanlarında kapsamlı hukuki hizmetler sunmaktadır. Uzmanlık ve bütünlükle haklarınızı korumaya kararlıyız.',
+        ft_name:'Karkalashevi ve Jovanovska Hukuk Bürosu',
+        ft_copy:'© 2026 Karkalashevi ve Jovanovska Hukuk Bürosu. Tüm hakları saklıdır.',
         acc:[
           {"h":"Medeni Hukuk ve Eşya Hukuku","p":["Medeni ve mülkiyet haklarınızın kapsamlı şekilde korunması. Mülkiyet uyuşmazlıklarında temsil, zilyetliğin korunması, ilgili maddi hukuka uygun olarak başkasının malı üzerindeki sınırlı ayni hakların (rehin, ipotek, irtifak hakları) tescili ve terkini, ayrıca gayrimenkul alım satımında hukuki yardım ile gerçek ve tüzel kişilerin kişilik haklarının korunması."]},
           {"h":"Borçlar Hukuku ve Tazminat","p":["Her türlü medeni ve ticari sözleşmenin hazırlanması, yorumlanması ve analizi, müzakereler sırasında hukuki danışmanlık ile sözleşmelerin ifası, feshi veya hükümsüzlüğünün tespitinde temsil. Her türlü sebepten (trafik kazaları, iş kazaları, sözleşmeden doğan yükümlülüklerin ihlali) kaynaklanan maddi ve manevi tazminat süreçlerinin yürütülmesi."]},
@@ -1820,6 +1820,11 @@
       document.querySelectorAll('[data-i18n-ph]').forEach(el => {
         const key = el.getAttribute('data-i18n-ph');
         if (t[key] !== undefined) el.placeholder = t[key];
+      });
+      // About section list uses the same service names as the Services section
+      document.querySelectorAll('[data-acc-title]').forEach(el => {
+        const d = t.acc[parseInt(el.dataset.accTitle) - 1];
+        if (d) el.textContent = d.h;
       });
       document.querySelectorAll('[data-acc-body]').forEach(el => {
         const i = parseInt(el.dataset.accBody) - 1;

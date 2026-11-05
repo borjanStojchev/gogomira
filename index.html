@@ -412,14 +412,14 @@
       padding: 0;
       margin: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px 24px;
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
     .acc-body-inner ul li {
       font-size: 13px;
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.5;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.6;
       display: flex;
       align-items: flex-start;
       gap: 10px;
@@ -434,12 +434,35 @@
       height: 7px;
       background: var(--accent);
       border-radius: 50%;
-      margin-top: 5px;
+      margin-top: 6px;
       flex-shrink: 0;
+    }
+    .acc-body-inner ul li strong {
+      display: block;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .acc-body-inner ul li span { display: block; margin-top: 2px; }
+    /* nested list (e.g. citizenship sub-cases): plain dashes, no boxes */
+    .acc-body-inner ul ul { gap: 4px; margin-top: 6px; }
+    .acc-body-inner li li {
+      background: none;
+      border: none;
+      padding: 0;
+      gap: 8px;
+    }
+    .acc-body-inner li li::before {
+      content: '–';
+      width: auto;
+      height: auto;
+      background: none;
+      border-radius: 0;
+      margin-top: 0;
+      color: var(--accent);
+      font-weight: 700;
     }
     @media (max-width: 768px) {
       .acc-body-inner { padding-left: 28px; }
-      .acc-body-inner ul { grid-template-columns: 1fr; }
     }
 
     /* ── STATS / COUNTER ── */
@@ -1105,6 +1128,7 @@
     .reveal-stagger.visible > *:nth-child(6)  { transition-delay: 0.45s; }
     .reveal-stagger.visible > *:nth-child(7)  { transition-delay: 0.53s; }
     .reveal-stagger.visible > *:nth-child(8)  { transition-delay: 0.61s; }
+    .reveal-stagger.visible > *:nth-child(n+9) { transition-delay: 0.61s; }
     .reveal-stagger.visible > * {
       opacity: 1;
       transform: translateY(0);
@@ -1263,8 +1287,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-              <h4 data-i18n="acc1_h">Работни односи</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <h4>Граѓанско право и стварно право</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1277,8 +1301,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-              <h4 data-i18n="acc2_h">Облигациони односи</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+              <h4>Облигационо право и надомест на штета</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1291,8 +1315,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-              <h4 data-i18n="acc3_h">Деловно право</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <h4>Семејно право</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1305,8 +1329,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-              <h4 data-i18n="acc4_h">Парница и арбитража</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/></svg></div>
+              <h4>Наследно право</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1319,8 +1343,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-              <h4 data-i18n="acc5_h">Наплата на долг</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h4>Кривично право</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1333,8 +1357,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-              <h4 data-i18n="acc6_h">Недвижности и градежништво</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-5h11L19 11"/><rect x="3" y="11" width="18" height="6" rx="1"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+              <h4>Сообраќајни прекршоци и прекршочно право</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1347,8 +1371,8 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-              <h4 data-i18n="acc7_h">Консултантски услуги</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M7 21v-5a5 5 0 0 1 10 0v5"/></svg></div>
+              <h4>Право на малолетници и малолетничка правда</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
@@ -1361,13 +1385,111 @@
         <div class="acc-item">
           <div class="acc-header">
             <div class="acc-header-left">
-              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-              <h4 data-i18n="acc8_h">Надомест на штета</h4>
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg></div>
+              <h4>Трговско право и корпоративно управување</h4>
             </div>
             <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
           </div>
           <div class="acc-body">
             <div class="acc-body-inner" data-acc-body="8"></div>
+          </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+              <h4>Стечајно право и стечајна постапка</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="9"></div>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg></div>
+              <h4>Постапки пред Централен регистар (Корпоративни услуги)</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="10"></div>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h4>Трудово право и работни односи</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="11"></div>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
+              <h4>Управно право и даночни спорови</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="12"></div>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <h4>Извршување и наплата на побарувања</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="13"></div>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <h4>Регулирање на престој на странци (Имиграциско право)</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="14"></div>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="acc-item">
+          <div class="acc-header">
+            <div class="acc-header-left">
+              <div class="acc-svc-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="10" r="3"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+              <h4>Државјанство на Република Северна Македонија</h4>
+            </div>
+            <div class="acc-icon"><svg viewBox="0 0 12 12" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-inner" data-acc-body="15"></div>
           </div>
         </div>
 
@@ -1525,18 +1647,22 @@
         ft_about:'GogoMira Law Firm provides comprehensive legal services in employment, business, civil, and real estate law. Committed to protecting your rights with expertise and integrity.',
         ft_links:'Quick Links', ft_about_us:'About Us',
         ft_copy:'© 2026 GogoMira. All rights reserved.',
-        acc1_h:'Employment Relations', acc2_h:'Contract Law', acc3_h:'Business Law',
-        acc4_h:'Litigation & Arbitration', acc5_h:'Debt Collection',
-        acc6_h:'Real Estate & Construction', acc7_h:'Consulting Services', acc8_h:'Compensation for Damages',
         acc:[
-          {p1:'The specifics of the labor market allow employers to apply measures contrary to applicable laws. Often, due to unfamiliarity with applicable provisions, employers may find themselves violating the rights of their employees.',p2:'A properly regulated employment process is a benefit for both contracting parties, ultimately producing a more favorable working environment and financial gains for the business.',items:['Preparation and analysis of employment and managerial contracts','Termination of employment contracts','Representation before competent authorities','Employment and residence procedures for foreign nationals','Termination and restructuring procedures','Rights regarding non-compete protection','Drafting internal regulations, decisions, and other acts','Representation before courts in employment matters']},
-          {p1:'Written contracts are the means by which contracting parties guarantee the achievement of their intended goals and interests. A properly and comprehensively drafted contract enables the long-term maintenance and development of civil or business relations.',p2:'If the contract is properly drafted or thoroughly understood through comprehensive analysis, the parties will be able to avoid lengthy and costly court proceedings.',items:['Sale, gift, and other property disposition contracts','Exchange and physical partition of real estate contracts','Lease and loan contracts','Representation and mediation contracts','Pledge contracts','Mutual relations settlement contracts','Other named and unnamed contracts']},
-          {p1:'Daily business interactions generate a large number of legal questions. Establishing and regulating a business relationship in a professional manner requires professional legal support.',p2:'Our law firm, as an authorized registration agent at the Central Registry, has completed all types of changes swiftly, professionally, and at market-appropriate prices.',items:['Incorporation of companies and branches of foreign companies','Registration of civil associations and foundations','Changes of authorized persons, registered office, and founding acts','Organization and change of branches','Liquidation of companies and branches','Registration of foreign direct investments','All other corporate change procedures']},
-          {p1:'Our law firm is committed to resolving every dispute as quickly as possible and out of court. Where a compromise solution is possible, we believe going to court is costly, time-consuming, and makes the outcome uncertain.',p2:'When court proceedings become unavoidable, our firm will represent your interests and work diligently to achieve a swift and favorable outcome.',items:['Monetary claims','Commercial disputes','Insurance','Compensation for damages (material and non-material)','Employment relations','Ownership and other property rights','Family and marital disputes (divorce)']},
-          {p1:'If your company has outstanding claims from its clients or consumers, we as debt collection lawyers will help you collect the receivable from your debtor. We act quickly and professionally — both out of court and through court proceedings.',p2:'In our long-standing experience in debt collection, we have established close relations with expert witnesses who can produce professional assessments confirming both the validity and the amount of the debt.',items:['Consultations regarding monetary claim collection','Representation before a court or notary','Representation before an enforcement officer','Other debt collection actions']},
-          {p1:'Knowledge of laws and domestic practices is of great importance when it comes to real estate, as well as all rights and obligations arising from its use, disposal, and restriction.',p2:'Regarding construction, we believe the greatest success lies in the timely prevention of potential harmful consequences for our clients — investors — providing legal assistance through to obtaining the property title.',items:['Planning and design','Construction and development','Finance and taxation','Obtaining construction permits and approvals','Drafting and analyzing legal documentation','Representation before competent authorities']},
-          {p1:'Legal entities in daily operations encounter legal questions that do not represent standard business challenges. Engaging a law firm to guide you through these legal issues will save time and resources.',p2:'Our experience gained through consulting various clients from different sectors will allow you to make all decisions related to your business interests quickly and correctly.',items:['Review and drafting of contracts and other legal acts','Employment relations','Business law','Contract obligations','Property law matters','Other areas']},
-          {p1:'Regardless of how it occurred, a damaging event is always unpredictable and causes consequences for the injured party. The law provides that every person\'s assets must be restored to the state as if the damage had never occurred — ensuring the right to satisfaction for anyone who has suffered harm.',items:['Damage caused by impairment — reduction of assets','Damage due to lost earnings / profit','Non-material damage caused by violation of personal rights','Damage compensation in insurance matters']},
+          {"h":"Civil & Property Law","p":["Comprehensive protection of your civil and property rights. Representation in ownership disputes, protection of possession, registration and deletion of property rights over another's assets (pledges, mortgages, easements) under the applicable substantive law, as well as legal assistance in real estate transactions and protection of the personal rights of individuals and legal entities."]},
+          {"h":"Contract Law & Compensation for Damages","p":["Drafting, interpretation, and analysis of all types of civil and commercial contracts, legal advice during negotiations, and representation in the performance, termination, or annulment of contracts. Handling claims for material and non-material damages on all grounds (traffic accidents, workplace injuries, breaches of contractual obligations)."]},
+          {"h":"Family Law","p":["Confidential and expert representation in sensitive family matters. Divorce proceedings, custody and upbringing of minor children, arranging contact with the parent the children do not live with, proceedings to obtain or modify child and spousal support (alimony), division of marital property, and protection in domestic violence proceedings and before Social Work Centers."]},
+          {"h":"Inheritance Law","p":["Expert advice and handling of probate proceedings before notaries and courts. Drafting wills, lifelong maintenance agreements, and agreements on distributing property during one's lifetime, protecting the reserved share of heirs, and representation in complex inheritance disputes to annul legal acts or wills."]},
+          {"h":"Criminal Law","p":["Professional and dedicated defense of suspects and defendants at every stage of criminal proceedings (police, public prosecution, first-instance and appellate courts). Representation and legal protection of injured parties and victims of crime, as well as filing criminal complaints, private prosecutions, and property claims for compensation."]},
+          {"h":"Traffic Offenses & Misdemeanor Law","p":["Legal assistance and representation for individuals and legal entities before misdemeanor authorities and courts. Expert defense against misdemeanor payment orders issued for traffic offenses, challenging the amount of fines, preventing protective measures (driving bans), and conducting settlement procedures."]},
+          {"h":"Juvenile Law & Juvenile Justice","p":["Specialized legal representation and mandatory defense of minors in conflict with the law before juvenile judges and Social Work Centers, with a primary focus on protecting the best interests of the child. Representation in mediation proceedings and in the application of assistance, protection, and educational measures, as well as legal protection of minors who are victims or witnesses in court proceedings."]},
+          {"h":"Commercial Law & Corporate Governance","p":["Complete legal support for businesses: sole proprietors, limited liability companies (DOO, DOOEL), and joint-stock companies (AD). Drafting company documents (agreements, articles of association, resolutions of the partners' meeting or shareholders' assembly), representation in commercial disputes between partners or business associates, legal support for status changes (acquisitions, mergers, divisions), and advising management bodies on protecting the rights of the company and its partners or shareholders."]},
+          {"h":"Bankruptcy Law & Proceedings","p":["Complete legal representation and advice for debtors and creditors at every stage of bankruptcy proceedings. Filing petitions to open bankruptcy proceedings due to insolvency, representing creditors in lodging and establishing claims against the bankruptcy estate, disputing claims, and legal protection before the creditors' committee and creditors' assembly. Legal assistance in preparing and implementing company reorganization plans, as well as representation in proceedings to challenge legal transactions of the bankrupt debtor."]},
+          {"h":"Central Registry Procedures (Corporate Services)","p":["Fast and efficient handling of all procedures through the Central Registry's e-registration system. Establishing new companies, branches, and other legal entities; registering status changes and changes of managers, partners, registered address, and business activities; registering and deleting pledges and other encumbrances; and liquidating and deregistering companies."]},
+          {"h":"Labor Law & Employment Relations","p":["Legal advice for employers and employees. Drafting employment contracts, management contracts, and rulebooks on job classification and internal organization. Representation in disputes over unlawful dismissal and the payment of salaries, contributions, and allowances, in proceedings for protection against workplace harassment (mobbing), and in disciplinary proceedings."]},
+          {"h":"Administrative Law & Tax Disputes","p":["Representation of individuals and legal entities before state administration bodies, inspection services, and local government. Handling administrative procedures for obtaining permits, licenses, and approvals, filing appeals against administrative decisions, and conducting administrative disputes before the Administrative Court to protect rights and legal interests."]},
+          {"h":"Enforcement & Debt Collection","p":["Efficient and timely legal assistance in collecting overdue monetary and non-monetary claims. Representation of creditors and debtors in proceedings before enforcement agents and notaries (decisions issued on the basis of an authentic document), filing objections to enforcement orders, and legal remedies against irregularities in enforcement."]},
+          {"h":"Residence of Foreign Nationals (Immigration Law)","p":["Complete legal assistance and representation in all procedures for regulating the legal residence of foreign nationals in the Republic of North Macedonia (short-term, temporary, and permanent residence).","Legal guidance through the procedures for obtaining the appropriate visas (visa C and visa D) and temporary residence permits on all legal grounds:"],"items":[{"t":"Residence for work and business","d":"Employment of foreign nationals, seasonal work, workers posted by foreign companies, self-employment, and residence for work on projects with strategic partner status"},{"t":"Family reunification","d":"Joining a foreign sponsor or a citizen of North Macedonia (spouses, minor children, dependent parents)"},{"t":"Residence based on real estate","d":"For citizens of EU and OECD member states who have acquired ownership of an apartment, house, or building under the conditions set by law"},{"t":"Education and training","d":"Schooling, full-time university study, language learning, international student exchange, professional specialization, and practical training"},{"t":"Scientific research, volunteering, and medical treatment"},{"t":"Humanitarian grounds and residence for foreign nationals originating from the Republic of North Macedonia"},{"t":"Permanent residence","d":"Legal representation once the legal requirement of 5 years of continuous residence is met, extension of residence permits, and appeals and lawsuits against decisions refusing, revoking, or withdrawing residence, or ordering return or expulsion"}]},
+          {"h":"Citizenship of the Republic of North Macedonia","p":["Legal advice, preparation of all documentation, and representation before the Ministry of Interior, diplomatic and consular missions, and the Administrative Court in all procedures related to Macedonian citizenship:"],"items":[{"t":"Acquiring citizenship by naturalization (regular procedure)","d":"Handling the procedure, meeting the legal residence requirements, providing guarantees, and release from foreign citizenship"},{"t":"Facilitated acquisition of citizenship (privileged naturalization)","sub":["Based on marriage to a citizen of North Macedonia (in the country or abroad)","For emigrants from the Republic of North Macedonia and their first-degree descendants (with no requirement to give up their original citizenship)","Based on a special economic, scientific, cultural, sports, or other national interest","For stateless persons and persons with recognized refugee status"]},{"t":"Acquiring citizenship by descent and birth","d":"Entries in the birth register and the register of citizens for children born in the country or abroad"},{"t":"Release from citizenship of North Macedonia","d":"Settling all prior property, marital, family, and tax obligations"},{"t":"Determining citizenship status","d":"Additional entries in the registers and administrative disputes over contested or rejected applications"}]}
         ],
       },
       mk: {
@@ -1569,18 +1695,22 @@
         ft_about:'Адвокатското друштво GogoMira нуди сеопфатни правни услуги во работно, деловно, граѓанско право и право на недвижности. Посветени сме на заштита на вашите права со стручност и интегритет.',
         ft_links:'Брзи врски', ft_about_us:'За нас',
         ft_copy:'© 2026 GogoMira. Сите права задржани.',
-        acc1_h:'Работни односи', acc2_h:'Облигациони односи', acc3_h:'Деловно право',
-        acc4_h:'Парница и арбитража', acc5_h:'Наплата на долг',
-        acc6_h:'Недвижности и градежништво', acc7_h:'Консултантски услуги', acc8_h:'Надомест на штета',
         acc:[
-          {p1:'Спецификите на пазарот на труд им овозможуваат на работодавачите да применуваат мерки кои се спротивни на важечките закони. Честопати, поради непознавање на применливите одредби, работодавачите може да се најдат во позиција да ги повредуваат правата на своите вработени.',p2:'Правилно уредениот работен процес претставува бенефит за двете договорни страни, продуцирајќи поповолна работна средина и финансиски придобивки за бизнисот.',items:['Подготовка и анализа на договори за вработување и менаџерски договори','Отказ на договор за вработување','Застапување пред надлежните органи','Постапка за вработување и престој на странци','Постапка за престанок на работен однос и преструктуирање','Права при заштита од конкурентско дејствување','Изготвување на правилници, одлуки и интерни акти','Застапување пред судови во постапки од работен однос']},
-          {p1:'Писмените договори се начин преку кој договорните страни ќе го гарантираат остварувањето на предвидените цели и интереси. Правилно и сеопфатно составениот договор или правно дело ќе овозможи долготрајно одржување и развој на граѓанскиот или деловниот однос на договорните страни.',p2:'Доколку самиот договор е правилно составен или добро разбран затоа што е сеопфатно анализиран, странките ќе бидат во можност да избегнат долги и скапи судски постапки.',items:['Договори за продажба, подарок и други договори за располагање на имот','Договори за размена и физичка делба на недвижен имот','Договори за закуп и послуга','Договори за застапување и посредување','Договори за залог','Договори за уредување на меѓусебни односи','Други именувани и неименувани договори']},
-          {p1:'Секојдневните бизнис интеракции продуцираат голем број на правни прашања. За воспоставување и уредување на еден деловен однос на професионален начин, со цел долготрајност, неопходна е професионална правна поддршка.',p2:'Нашата адвокатска канцеларија како овластен регистрационен агент во Централниот регистар ги има спроведено сите видови на промени брзо, професионално и по цена адекватна на пазарот.',items:['Основање на друштва и подружници на странски друштва','Регистрација на здруженија на граѓани и фондации','Промени на овластени лица, седиште, основачки акти и други податоци','Организирање и промена на подружници','Ликвидација на друштва и подружници','Запишување и промени на странски директни инвестиции','Сите останати постапки за корпоративни промени']},
-          {p1:'Нашата адвокатска канцеларија е определена дека секој спор треба да биде разрешен во најбрз можен рок и по вонсудски пат. Доколку постои можност за компромисно и прифатливо решение, сметаме дека одењето на суд е скапо, одзема многу време и го прави исходот несигурен.',p2:'Во услови кога судска постапка е неизбежна, нашата адвокатска канцеларија ќе ги застапува Вашите интереси и ќе се вложи за добивање на брз и посакуван исход.',items:['Парично побарување','Трговски спорови','Осигурување','Надомест на штета (материјална и нематеријална)','Работни односи','Сопственост и други стварни права','Семејни и брачни спорови (развод на брак)']},
-          {p1:'Доколку Вашата фирма во моментот има побарувања кон своите клиенти или потрошувачи, ние како адвокат за наплата на долг ќе Ви помогнеме да го наплатите побарувањето. Дејствуваме брзо и професионално — и по вонсудски и по судски пат.',p2:'Во нашето долгогодишно искуство за наплата на побарувања имаме стекнато блиски релации со вешти лица кои можат да изработат стручно вештачење кое би ги потврдило основаноста и висината на долгот.',items:['Консултации во однос на наплата на парично побарување','Застапување пред суд или нотар','Застапување пред извршител','Други дејствија поврзани со наплата на побарувања']},
-          {p1:'Познавањето на законите и домашните пракси е од огромно значење кога се во прашање недвижностите, како и сите права и обврски кои произлегуваат од нивното користење, располагање и ограничување.',p2:'Во однос на градежништвото, сметаме дека најголемиот успех е навременото избегнување на евентуалните штетни последици за нашите клиенти — инвеститори, давајќи правна помош до „обезбедување на имотен лист".',items:['Планирање и проектирање','Изградба и развој','Финансии и даночење','Обезбедување на дозволи и одобрение за градење','Изготвување и анализа на правна документација','Застапување пред надлежни органи']},
-          {p1:'Правните ентитети во секојдневието се среќаваат со правни прашања кои не претставуваат стандардни предизвици на работењето. Ангажманот на адвокатска канцеларија ќе значи заштеда на време и средства.',p2:'Нашето искуство стекнато преку консултирање на различни клиенти од различни сектори ќе Ви овозможи на правилен и брз начин да ги донесете сите одлуки за реализација на Вашиот бизнис интерес.',items:['Ревидирање и изготвување на договори и други правни акти','Работни односи','Деловно право','Облигациони односи','Имотно-правни прашања','Останати области']},
-          {p1:'Без разлика како е настанат, штетниот настан секогаш е непредвидлив и предизвикува последици за оштетениот. Регулативата предвидува дека имотот на секое лице мора да биде доведен во онаа состојба како штетата никогаш да не се ни случила — односно предвидува право на сатисфакција.',items:['Штета настаната поради оштетување — намалување на имотот','Штета поради изгубена заработувачка / добивка','Нематеријална штета предизвикана поради повреда на личните права','Надомест на штета при осигурување']},
+          {"h":"Граѓанско право и стварно право","p":["Сеопфатна заштита на вашите граѓански и имотни права. Застапување во сопственички спорови, заштита на владение, запишување и бришење на стварни права врз туѓи ствари (залог, хипотека, службености) согласно релевантното материјално право, како и правна помош при промет со недвижности и заштита на личните права на физичките и правните лица."]},
+          {"h":"Облигационо право и надомест на штета","p":["Составување, толкување и анализа на сите видови граѓански и деловни договори, правно советување при преговори и застапување при исполнување, раскинување или утврдување ништовност на договорите. Водење постапки за надомест на материјална и нематеријална штета од сите основи (сообраќајни незгоди, повреди на работа, прекршување на договорни обврски)."]},
+          {"h":"Семејно право","p":["Доверливо и стручно застапување во чувствителни семејни односи. Постапки за развод на брак, доверување на малолетни деца на чување и воспитување, уредување лични контакти со родителот со кого децата не живеат, постапки за остварување и измена на издршка (алиментација), поделба на брачен имот и заштита во постапки за семејно насилство и пред Центрите за социјална работа."]},
+          {"h":"Наследно право","p":["Стручно советување и водење на оставински постапки пред нотари и судови. Составување на тестаменти, договори за доживотно издржување и договори за распределба на имот за време на живот, заштита на нужниот дел на наследниците, како и застапување во комплексни наследно-правни спорови за поништување на правни дела или тестаменти."]},
+          {"h":"Кривично право","p":["Професионална и посветена одбрана на осомничени и обвинети лица во сите фази на кривичната постапка (полиција, јавно обвинителство, првостепен и второстепен суд). Застапување и правна заштита на оштетени лица и жртви на кривични дела, како и поднесување кривични пријави, приватни тужби и имотно-правни барања за надомест на штета."]},
+          {"h":"Сообраќајни прекршоци и прекршочно право","p":["Правна помош и застапување пред прекршочните органи и судовите во прекршочни постапки за физички и правни лица. Стручна одбрана при издадени прекршочни платни налози за сообраќајни прекршоци, оспорување на висината на глобите, спречување на изрекување заштитни мерки (забрана за управување со моторно возило), како и водење постапки за спогодување."]},
+          {"h":"Право на малолетници и малолетничка правда","p":["Специјализирано правно застапување и задолжителна одбрана на малолетни лица во судир со законот пред судии за малолетници и Центри за социјална работа, со примарен фокус на заштита на најдобриот интерес на детето. Застапување во постапки за медијација, примена на мерки на помош, заштита и воспитни мерки, како и правна заштита на малолетници како жртви или сведоци во судски постапки."]},
+          {"h":"Трговско право и корпоративно управување","p":["Комплетна правна поддршка за деловни субјекти (трговци поединци, ДОО, ДООЕЛ, АД). Изработка на акти на друштвото (договори, статути, одлуки на собир/собрание), застапување во трговски спорови меѓу содружници или деловни партнери, правна поддршка при статусни промени (припојување, спојување, поделба), како и советување на органите на управување за заштита на правата на друштвото и содружниците/акционерите."]},
+          {"h":"Стечајно право и стечајна постапка","p":["Комплетно правно застапување и советување во сите фази на стечајната постапка за должници и за доверители. Поднесување предлози за отворање стечајна постапка поради неспособност за плаќање, застапување на доверители при пријавување и утврдување на побарувања во стечајната маса, оспорување на побарувања и правна заштита во одборот и собранието на доверители. Правна помош при изготвување и спроведување на планови за реорганизација на претпријатијата, како и застапување во постапки за побивање на правни дејствија на стечајниот должник."]},
+          {"h":"Постапки пред Централен регистар (Корпоративни услуги)","p":["Брзо и ефикасно спроведување на сите постапки преку системот за е-регистрација на Централниот регистар. Основање нови трговски друштва, подружници и други правни лица, внесување статусни промени, промена на управители, содружници, адреса на седиште, предмет на работење (дејности), уписи и бришења на залози и други товари, како и ликвидација и бришење на друштва."]},
+          {"h":"Трудово право и работни односи","p":["Правно советување за работодавачи и вработени. Составување договори за вработување, менаџерски договори, правилници за систематизација и внатрешна организација. Застапување во спорови за незаконит отказ, исплата на плати, придонеси и надоместоци, постапки за заштита од вознемирување на работно место (мобинг) и дисциплински постапки."]},
+          {"h":"Управно право и даночни спорови","p":["Застапување на граѓани и правни лица пред органите на државната управа, инспекциските служби и локалната самоуправа. Водење управни постапки за добивање дозволи, лиценци и согласности, поднесување жалби против управни решенија, како и водење управни спорови пред Управниот суд за заштита на правата и правните интереси."]},
+          {"h":"Извршување и наплата на побарувања","p":["Ефикасна и навремена правна помош за наплата на доспеани парични и непарични побарувања. Застапување на доверители и должници во постапки пред извршители и нотари (издавање решенија врз основа на веродостојна исправа), поднесување приговори против налози за извршување и правни лекови против неправилности во извршувањето."]},
+          {"h":"Регулирање на престој на странци (Имиграциско право)","p":["Комплетна правна помош и застапување во сите постапки за регулирање на законскиот престој на странски државјани во Република Северна Македонија (краткорочен, привремен и постојан престој).","Правно водење низ постапките за добивање соодветни визи (виза Ц и виза Д) и одобренија за привремен престој по сите законски основи:"],"items":[{"t":"Престој заради работа и бизнис","d":"Вработување на странци, сезонска работа, упатени работници од странски компании, самовработување, како и престој за работа на проекти со статус на стратешки партнер"},{"t":"Семејно обединување","d":"Спојување на семејство со странски покровител или со државјанин на РСМ (брачни другари, малолетни деца, зависни родители)"},{"t":"Престој по основ на недвижност","d":"За државјани на земји-членки на ЕУ и ОЕЦД кои стекнале право на сопственост на стан, куќа или зграда под законски утврдени услови"},{"t":"Образование и усовршување","d":"Школување, редовно студирање, изучување јазик, меѓународна размена на ученици и студенти, стручна специјализација и практична обука"},{"t":"Научно-истражувачка дејност, волонтерство и лекување"},{"t":"Хуманитарни основи и престој на странци по потекло од Република Северна Македонија"},{"t":"Постојан престој","d":"Правно застапување по исполнување на законскиот услов од 5 години непрекинат престој, продолжување на дозволи за престој, како и заштита и поднесување жалби и тужби против решенија за одбивање, откажување, одземање на престој, враќање или протерување"}]},
+          {"h":"Државјанство на Република Северна Македонија","p":["Правно советување, подготовка на целокупната документација и застапување пред Министерството за внатрешни работи, дипломатско-конзуларните претставништва и Управниот суд во сите постапки поврзани со македонско државјанство:"],"items":[{"t":"Стекнување државјанство со природување (редовна постапка)","d":"Водење на постапката, исполнување на условите за законски престој, обезбедување гаранции и отпуст од странско државјанство"},{"t":"Олеснето стекнување државјанство (привилегирано природување)","sub":["По основ на брак со државјанин на РСМ (во земјата или во странство)","За иселеници од Република Северна Македонија и нивни потомци до прво колено (без услов за отпуст од матично државјанство)","По основ на особен економски, научен, културен, спортски или друг национален интерес","За лица без државјанство и лица со признат статус на бегалец"]},{"t":"Стекнување државјанство по потекло и раѓање","d":"Уписи во матични книги на родени и евиденција на државјани за деца родени во земјата или во странство"},{"t":"Постапки за отпуст од државјанство на РСМ","d":"Регулирање на сите претходни имотно-правни, брачни, семејни и даночни обврски"},{"t":"Утврдување на статус на државјанство","d":"Дополнителни уписи во регистрите и водење управни спорови при оспорени или одбиени барања"}]}
         ],
       },
       sq: {
@@ -1613,18 +1743,22 @@
         ft_about:'Firma e avokatisë GogoMira ofron shërbime juridike gjithëpërfshirëse në të drejtën e punës, tregtare, civile dhe të pasurive të paluajtshme. Të përkushtuar ndaj mbrojtjes së të drejtave tuaja me ekspertizë dhe integritet.',
         ft_links:'Lidhje të shpejta', ft_about_us:'Rreth nesh',
         ft_copy:'© 2026 GogoMira. Të gjitha të drejtat e rezervuara.',
-        acc1_h:'Marrëdhëniet e punës', acc2_h:'E drejta e detyrimeve', acc3_h:'E drejta tregtare',
-        acc4_h:'Gjyqësi dhe arbitrazh', acc5_h:'Mbledhja e borxheve',
-        acc6_h:'Pasuria e paluajtshme dhe ndërtimi', acc7_h:'Shërbime këshillimore', acc8_h:'Kompensimi i dëmeve',
         acc:[
-          {p1:'Specifika e tregut të punës u mundëson punëdhënësve të zbatojnë masa që bien ndesh me ligjet në fuqi. Shpesh, për shkak të mosnjohjes së dispozitave të zbatueshme, punëdhënësit mund të gjenden duke shkelur të drejtat e punonjësve të tyre.',p2:'Procesi i punës i rregulluar siç duhet është i dobishëm për të dyja palët kontraktuese, duke prodhuar një mjedis pune më të favorshëm dhe përfitime financiare për biznesin.',items:['Përgatitja dhe analiza e kontratave të punësimit dhe kontratave manageriale','Ndërprerja e kontratave të punësimit','Përfaqësimi para autoriteteve kompetente','Procedura e punësimit dhe qëndrimit të shtetasve të huaj','Procedurat e ndërprerjes dhe ristrukturimit të marrëdhënies së punës','Të drejtat e mbrojtjes nga konkurrenca','Hartimi i rregulloreve, vendimeve dhe akteve të tjera të brendshme','Përfaqësimi para gjykatave në çështjet e marrëdhënieve të punës']},
-          {p1:'Kontratat me shkrim janë mënyra nëpërmjet të cilës palët kontraktuese do të garantojnë arritjen e qëllimeve dhe interesave të parashikuara. Kontrata ose akti juridik i hartuar saktë dhe gjithëpërfshirës do të mundësojë mirëmbajtjen dhe zhvillimin afatgjatë të marrëdhënies civile ose tregtare.',p2:'Nëse kontrata është hartuar saktë ose kuptuar mirë falë analizës gjithëpërfshirëse, palët do të mund të shmangin procedura gjyqësore të gjata dhe të kushtueshme.',items:['Kontratat e shitjes, dhurimit dhe kontrata të tjera të disponimit të pasurisë','Kontratat e shkëmbimit dhe ndarjes fizike të pasurisë së paluajtshme','Kontratat e qirasë dhe huadhënies','Kontratat e përfaqësimit dhe ndërmjetësimit','Kontratat e pengut','Kontratat e rregullimit të marrëdhënieve të ndërsjella','Kontrata të tjera të emërtuara dhe të paemërtuara']},
-          {p1:'Ndërveprimet e përditshme të biznesit gjenerojnë një numër të madh çështjesh ligjore. Për të vendosur dhe rregulluar një marrëdhënie biznesi në mënyrë profesionale, është e nevojshme mbështetja ligjore profesionale.',p2:'Firma jonë e avokatisë, si agjent i autorizuar regjistrimi në Regjistrin Qendror, ka kryer të gjitha llojet e ndryshimeve shpejt, në mënyrë profesionale dhe me çmime adekuate të tregut.',items:['Themelimi i shoqërive dhe degëve të shoqërive të huaja','Regjistrimi i shoqatave civile dhe fondacioneve','Ndryshimet e personave të autorizuar, selisë dhe akteve themeluese','Organizimi dhe ndryshimi i degëve','Likuidimi i shoqërive dhe degëve','Regjistrimi i investimeve të huaja direkte','Të gjitha procedurat e tjera të ndryshimeve korporative']},
-          {p1:'Firma jonë e avokatisë është e vendosur që çdo mosmarrëveshje duhet të zgjidhet sa më shpejt dhe jashtë gjykatës. Ku ekziston mundësia e një zgjidhjeje kompromisi, besojmë se gjyqësia është e kushtueshme, kërkon shumë kohë dhe e bën rezultatin të pasigurt.',p2:'Kur procedurat gjyqësore bëhen të pashmangshme, firma jonë do të përfaqësojë interesat tuaja dhe do të punojë me zell për të arritur një rezultat të shpejtë dhe të favorshëm.',items:['Kërkesat monetare','Mosmarrëveshjet tregtare','Sigurimi','Kompensimi i dëmeve (materiale dhe jo-materiale)','Marrëdhëniet e punës','Pronësia dhe të drejtat e tjera sendore','Mosmarrëveshjet familjare dhe martesore (divorci)']},
-          {p1:'Nëse kompania juaj aktualisht ka pretendime ndaj klientëve ose konsumatorëve të saj, ne si avokat për mbledhjen e borxheve do t\'ju ndihmojmë të mbledhni pretendimin nga debitori juaj. Veprojmë shpejt dhe profesionalisht — si jashtë gjykatës ashtu edhe nëpërmjet procedurës gjyqësore.',p2:'Në përvojën tonë të gjatë të mbledhjes së borxheve, kemi krijuar marrëdhënie të ngushta me ekspertë dëshmitarë që mund të prodhojnë vlerësime profesionale duke konfirmuar vlefshmërinë dhe shumën e borxhit.',items:['Konsultime në lidhje me mbledhjen e kërkesave monetare','Përfaqësimi para gjykatës ose noterit','Përfaqësimi para një zyrtari zbatimi','Veprime të tjera të lidhura me mbledhjen e borxheve']},
-          {p1:'Njohja e ligjeve dhe praktikave vendase është shumë e rëndësishme kur bëhet fjalë për pasuritë e paluajtshme, si dhe të gjitha të drejtat dhe detyrimet që rrjedhin nga përdorimi, disponimi dhe kufizimi i tyre.',p2:'Në lidhje me ndërtimin, besojmë se suksesi më i madh qëndron në parandalimin në kohë të pasojave të mundshme të dëmshme për klientët tanë — investitorët, duke ofruar ndihmë ligjore deri në marrjen e titullit të pronës.',items:['Planifikimi dhe projektimi','Ndërtimi dhe zhvillimi','Financat dhe taksimi','Marrja e lejeve dhe miratimeve të ndërtimit','Hartimi dhe analiza e dokumentacionit ligjor','Përfaqësimi para autoriteteve kompetente']},
-          {p1:'Subjektet ligjore në veprimtarinë e tyre të përditshme hasin çështje ligjore që nuk përfaqësojnë sfida standarde të biznesit. Angazhimi i një firme avokatish do të kursejë kohë dhe burime për zgjidhjen e këtyre çështjeve.',p2:'Përvoja jonë e fituar nëpërmjet konsultimit të klientëve të ndryshëm nga sektorë të ndryshëm do t\'ju lejojë të merrni të gjitha vendimet e biznesit shpejt dhe saktë.',items:['Rishikimi dhe hartimi i kontratave dhe akteve të tjera ligjore','Marrëdhëniet e punës','E drejta tregtare','Detyrimet kontraktuale','Çështjet e të drejtës pronësore','Fusha të tjera']},
-          {p1:'Pavarësisht se si ka ndodhur, ngjarja dëmshme është gjithmonë e paparashikueshme dhe shkakton pasoja për palën e dëmtuar. Ligji parashikon se pasuria e çdo personi duhet të rivendoset në gjendjen sikur dëmi të mos ketë ndodhur kurrë — duke garantuar të drejtën e satisfaksionit.',items:['Dëmi i shkaktuar nga dëmtimi — ulja e pasurisë','Dëmi për shkak të fitimit / të ardhurave të humbura','Dëmi jomaterial i shkaktuar nga shkelja e të drejtave personale','Kompensimi i dëmit në sigurim']},
+          {"h":"E drejta civile dhe e drejta sendore","p":["Mbrojtje gjithëpërfshirëse e të drejtave tuaja civile dhe pronësore. Përfaqësim në kontestet pronësore, mbrojtje e posedimit, regjistrim dhe fshirje e të drejtave sendore mbi sendet e huaja (peng, hipotekë, servitute) në përputhje me të drejtën materiale përkatëse, si dhe ndihmë juridike në qarkullimin e patundshmërive dhe mbrojtje e të drejtave personale të personave fizikë dhe juridikë."]},
+          {"h":"E drejta e detyrimeve dhe kompensimi i dëmit","p":["Hartim, interpretim dhe analizë e të gjitha llojeve të kontratave civile dhe tregtare, këshillim juridik gjatë negociatave dhe përfaqësim në përmbushjen, zgjidhjen ose konstatimin e pavlefshmërisë së kontratave. Udhëheqje e procedurave për kompensimin e dëmit material dhe jomaterial nga të gjitha bazat (aksidente trafiku, lëndime në punë, shkelje të detyrimeve kontraktuale)."]},
+          {"h":"E drejta familjare","p":["Përfaqësim konfidencial dhe profesional në marrëdhëniet e ndjeshme familjare. Procedura për zgjidhjen e martesës, besimin e fëmijëve të mitur për kujdes dhe edukim, rregullimin e kontakteve personale me prindin me të cilin fëmijët nuk jetojnë, procedura për realizimin dhe ndryshimin e alimentacionit, ndarjen e pasurisë martesore, si dhe mbrojtje në procedurat për dhunë në familje dhe para Qendrave për Punë Sociale."]},
+          {"h":"E drejta trashëgimore","p":["Këshillim profesional dhe udhëheqje e procedurave trashëgimore para noterëve dhe gjykatave. Hartim i testamenteve, kontratave për mbajtje të përjetshme dhe kontratave për ndarjen e pasurisë gjatë jetës, mbrojtje e pjesës së detyrueshme të trashëgimtarëve, si dhe përfaqësim në kontestet komplekse trashëgimore për anulimin e veprimeve juridike ose të testamenteve."]},
+          {"h":"E drejta penale","p":["Mbrojtje profesionale dhe e përkushtuar e personave të dyshuar dhe të akuzuar në të gjitha fazat e procedurës penale (polici, prokurori publike, gjykatë e shkallës së parë dhe e shkallës së dytë). Përfaqësim dhe mbrojtje juridike e personave të dëmtuar dhe viktimave të veprave penale, si dhe paraqitje e kallëzimeve penale, padive private dhe kërkesave pasurore-juridike për kompensimin e dëmit."]},
+          {"h":"Kundërvajtjet në trafik dhe e drejta kundërvajtëse","p":["Ndihmë juridike dhe përfaqësim para organeve kundërvajtëse dhe gjykatave në procedurat kundërvajtëse për persona fizikë dhe juridikë. Mbrojtje profesionale ndaj urdhërpagesave të lëshuara për kundërvajtje në trafik, kundërshtim i lartësisë së gjobave, parandalim i shqiptimit të masave mbrojtëse (ndalim i drejtimit të automjetit), si dhe udhëheqje e procedurave për marrëveshje."]},
+          {"h":"E drejta e të miturve dhe drejtësia për të mitur","p":["Përfaqësim juridik i specializuar dhe mbrojtje e detyrueshme e të miturve në konflikt me ligjin para gjyqtarëve për të mitur dhe Qendrave për Punë Sociale, me fokus parësor mbrojtjen e interesit më të mirë të fëmijës. Përfaqësim në procedurat e ndërmjetësimit dhe në zbatimin e masave të ndihmës, mbrojtjes dhe masave edukative, si dhe mbrojtje juridike e të miturve si viktima ose dëshmitarë në procedurat gjyqësore."]},
+          {"h":"E drejta tregtare dhe qeverisja korporative","p":["Mbështetje e plotë juridike për subjektet afariste: tregtarë individualë, shoqëri me përgjegjësi të kufizuar (SHPK, SHPKNJP) dhe shoqëri aksionare (SHA). Hartim i akteve të shoqërisë (kontrata, statute, vendime të mbledhjes së ortakëve ose të kuvendit të aksionarëve), përfaqësim në kontestet tregtare ndërmjet ortakëve ose partnerëve afaristë, mbështetje juridike gjatë ndryshimeve statusore (bashkëngjitje, bashkim, ndarje), si dhe këshillim i organeve drejtuese për mbrojtjen e të drejtave të shoqërisë dhe të ortakëve/aksionarëve."]},
+          {"h":"E drejta e falimentimit dhe procedura e falimentimit","p":["Përfaqësim dhe këshillim i plotë juridik në të gjitha fazat e procedurës së falimentimit, si për debitorët ashtu edhe për kreditorët. Paraqitje e propozimeve për hapjen e procedurës së falimentimit për shkak të paaftësisë paguese, përfaqësim i kreditorëve gjatë paraqitjes dhe vërtetimit të kërkesave në masën e falimentimit, kundërshtim i kërkesave dhe mbrojtje juridike në këshillin dhe kuvendin e kreditorëve. Ndihmë juridike në hartimin dhe zbatimin e planeve për riorganizimin e ndërmarrjeve, si dhe përfaqësim në procedurat për kundërshtimin e veprimeve juridike të debitorit në falimentim."]},
+          {"h":"Procedurat në Regjistrin Qendror (shërbime korporative)","p":["Zbatim i shpejtë dhe efikas i të gjitha procedurave përmes sistemit të e-regjistrimit të Regjistrit Qendror. Themelim i shoqërive të reja tregtare, degëve dhe personave të tjerë juridikë, regjistrim i ndryshimeve statusore, ndryshim i drejtuesve, ortakëve, adresës së selisë dhe veprimtarisë, regjistrim dhe fshirje e pengjeve dhe barrëve të tjera, si dhe likuidim dhe çregjistrim i shoqërive."]},
+          {"h":"E drejta e punës dhe marrëdhëniet e punës","p":["Këshillim juridik për punëdhënësit dhe të punësuarit. Hartim i kontratave të punës, kontratave menaxheriale dhe rregulloreve për sistematizim dhe organizim të brendshëm. Përfaqësim në kontestet për largim të paligjshëm nga puna, pagesë të pagave, kontributeve dhe kompensimeve, në procedurat për mbrojtje nga ngacmimi në vendin e punës (mobing) dhe në procedurat disiplinore."]},
+          {"h":"E drejta administrative dhe kontestet tatimore","p":["Përfaqësim i qytetarëve dhe personave juridikë para organeve të administratës shtetërore, shërbimeve inspektuese dhe vetëqeverisjes lokale. Udhëheqje e procedurave administrative për marrjen e lejeve, licencave dhe pëlqimeve, paraqitje e ankesave kundër aktvendimeve administrative, si dhe udhëheqje e kontesteve administrative para Gjykatës Administrative për mbrojtjen e të drejtave dhe interesave juridike."]},
+          {"h":"Përmbarimi dhe arkëtimi i kërkesave","p":["Ndihmë juridike efikase dhe në kohë për arkëtimin e kërkesave të maturuara monetare dhe jomonetare. Përfaqësim i kreditorëve dhe debitorëve në procedurat para përmbaruesve dhe noterëve (lëshim i aktvendimeve në bazë të dokumentit të besueshëm), paraqitje e kundërshtimeve ndaj urdhrave për përmbarim dhe e mjeteve juridike kundër parregullsive në përmbarim."]},
+          {"h":"Rregullimi i qëndrimit të të huajve (e drejta e imigracionit)","p":["Ndihmë juridike e plotë dhe përfaqësim në të gjitha procedurat për rregullimin e qëndrimit të ligjshëm të shtetasve të huaj në Republikën e Maqedonisë së Veriut (qëndrim afatshkurtër, i përkohshëm dhe i përhershëm).","Udhëheqje juridike nëpër procedurat për marrjen e vizave përkatëse (viza C dhe viza D) dhe të lejeve për qëndrim të përkohshëm në të gjitha bazat ligjore:"],"items":[{"t":"Qëndrim për punë dhe biznes","d":"Punësim i të huajve, punë sezonale, punëtorë të dërguar nga kompani të huaja, vetëpunësim, si dhe qëndrim për punë në projekte me status të partnerit strategjik"},{"t":"Bashkim familjar","d":"Bashkim me sponsor të huaj ose me shtetas të RMV-së (bashkëshortë, fëmijë të mitur, prindër në varësi)"},{"t":"Qëndrim në bazë të pronës së paluajtshme","d":"Për shtetasit e vendeve anëtare të BE-së dhe OECD-së që kanë fituar të drejtën e pronësisë mbi banesë, shtëpi ose ndërtesë sipas kushteve të përcaktuara me ligj"},{"t":"Arsimim dhe aftësim","d":"Shkollim, studime të rregullta, mësim i gjuhës, shkëmbim ndërkombëtar i nxënësve dhe studentëve, specializim profesional dhe trajnim praktik"},{"t":"Veprimtari shkencore-hulumtuese, vullnetarizëm dhe mjekim"},{"t":"Baza humanitare dhe qëndrim i të huajve me prejardhje nga Republika e Maqedonisë së Veriut"},{"t":"Qëndrim i përhershëm","d":"Përfaqësim juridik pas plotësimit të kushtit ligjor prej 5 vitesh qëndrim të pandërprerë, vazhdim i lejeve të qëndrimit, si dhe mbrojtje dhe paraqitje e ankesave dhe padive kundër aktvendimeve për refuzim, anulim ose heqje të qëndrimit, kthim ose dëbim"}]},
+          {"h":"Shtetësia e Republikës së Maqedonisë së Veriut","p":["Këshillim juridik, përgatitje e të gjithë dokumentacionit dhe përfaqësim para Ministrisë së Punëve të Brendshme, përfaqësive diplomatike-konsullore dhe Gjykatës Administrative në të gjitha procedurat që lidhen me shtetësinë maqedonase:"],"items":[{"t":"Fitimi i shtetësisë me natyralizim (procedurë e rregullt)","d":"Udhëheqje e procedurës, plotësim i kushteve për qëndrim të ligjshëm, sigurim i garancive dhe lirim nga shtetësia e huaj"},{"t":"Fitimi i lehtësuar i shtetësisë (natyralizim i privilegjuar)","sub":["Në bazë të martesës me shtetas të RMV-së (në vend ose jashtë vendit)","Për emigrantët nga Republika e Maqedonisë së Veriut dhe pasardhësit e tyre deri në shkallën e parë (pa kusht për lirim nga shtetësia amë)","Në bazë të interesit të veçantë ekonomik, shkencor, kulturor, sportiv ose të një interesi tjetër kombëtar","Për personat pa shtetësi dhe personat me status të njohur refugjati"]},{"t":"Fitimi i shtetësisë me prejardhje dhe lindje","d":"Regjistrime në librat amë të të lindurve dhe në evidencën e shtetasve për fëmijët e lindur në vend ose jashtë vendit"},{"t":"Procedurat për lirim nga shtetësia e RMV-së","d":"Rregullim i të gjitha detyrimeve paraprake pasurore-juridike, martesore, familjare dhe tatimore"},{"t":"Përcaktimi i statusit të shtetësisë","d":"Regjistrime shtesë në regjistra dhe udhëheqje e kontesteve administrative për kërkesat e kontestuara ose të refuzuara"}]}
         ],
       },
       tr: {
@@ -1657,18 +1791,22 @@
         ft_about:'GogoMira Hukuk Bürosu, iş, ticaret, medeni ve gayrimenkul hukuku alanlarında kapsamlı hukuki hizmetler sunmaktadır. Uzmanlık ve bütünlükle haklarınızı korumaya kararlıyız.',
         ft_links:'Hızlı Bağlantılar', ft_about_us:'Hakkımızda',
         ft_copy:'© 2026 GogoMira. Tüm hakları saklıdır.',
-        acc1_h:'İş İlişkileri', acc2_h:'Borçlar Hukuku', acc3_h:'Ticaret Hukuku',
-        acc4_h:'Dava ve Tahkim', acc5_h:'Alacak Tahsili',
-        acc6_h:'Gayrimenkul ve İnşaat', acc7_h:'Danışmanlık Hizmetleri', acc8_h:'Tazminat',
         acc:[
-          {p1:'İşgücü piyasasının özellikleri, işverenlerin yürürlükteki yasalara aykırı önlemler uygulamasına olanak tanımaktadır. Çoğu zaman, uygulanabilir hükümlerin bilinmemesi nedeniyle işverenler, çalışanlarının haklarını ihlal eden bir konumda bulunabilir.',p2:'Doğru şekilde düzenlenmiş bir çalışma süreci, her iki sözleşme tarafı için de bir kazanımdır ve daha elverişli bir çalışma ortamı ile işletme için finansal faydalar sağlar.',items:['İş sözleşmelerinin ve yönetim sözleşmelerinin hazırlanması ve analizi','İş sözleşmesinin feshi','Yetkili makamlar önünde temsil','Yabancı uyrukluların istihdamı ve ikamet prosedürleri','İş ilişkisinin sona erdirilmesi ve yeniden yapılandırma prosedürleri','Rekabet yasağı koruma hakları','Yönetmelik, karar ve diğer iç düzenlemelerin hazırlanması','İş hukuku uyuşmazlıklarında mahkemelerde temsil']},
-          {p1:'Yazılı sözleşmeler, sözleşme taraflarının öngörülen hedef ve çıkarların gerçekleşmesini güvence altına alacağı yoldur. Doğru ve kapsamlı biçimde hazırlanmış bir sözleşme, taraflar arasındaki sivil veya ticari ilişkinin uzun vadeli sürdürülmesini ve geliştirilmesini sağlayacaktır.',p2:'Sözleşme doğru hazırlanmış veya kapsamlı analiz sayesinde iyi anlaşılmışsa taraflar uzun ve maliyetli dava süreçlerinden kaçınabilecektir.',items:['Satış, bağış ve diğer mülk tasarruf sözleşmeleri','Gayrimenkul takas ve fiziksel bölünme sözleşmeleri','Kira ve ödünç sözleşmeleri','Temsil ve arabuluculuk sözleşmeleri','Rehin sözleşmeleri','Karşılıklı ilişkilerin düzenlenmesine dair sözleşmeler','Diğer adlı ve adsız sözleşmeler']},
-          {p1:'Günlük iş etkileşimleri çok sayıda hukuki soru doğurmaktadır. Bir iş ilişkisini profesyonel bir şekilde kurabilmek ve düzenleyebilmek için profesyonel hukuki destek zorunludur.',p2:'Hukuk büromuz, Merkezi Sicil\'de yetkili tescil acentesi olarak tüm değişiklikleri hızlı, profesyonel ve piyasaya uygun fiyatlarla gerçekleştirmiştir.',items:['Şirket kuruluşları ve yabancı şirketlerin şubeleri','Sivil toplum kuruluşları ve vakıfların tescili','Yetkili kişi, merkez ve kuruluş belgelerinde değişiklikler','Şubelerin organizasyonu ve değişimi','Şirket ve şubelerin tasfiyesi','Yabancı doğrudan yatırımların tescili ve değişimi','Tüm diğer kurumsal değişiklik prosedürleri']},
-          {p1:'Hukuk büromuz her uyuşmazlığın mümkün olan en kısa sürede ve mahkeme dışında çözülmesi gerektiğine inanmaktadır. Uzlaşı çözümünün mümkün olduğu durumlarda mahkemeye gitmenin maliyetli, zaman alıcı ve sonucu belirsiz kıldığını düşünüyoruz.',p2:'Mahkeme süreçlerinin kaçınılmaz hale geldiği durumlarda büromuz çıkarlarınızı temsil edecek ve hızlı ve arzu edilen bir sonuç elde etmek için özenle çalışacaktır.',items:['Parasal talepler','Ticari uyuşmazlıklar','Sigorta','Maddi ve manevi tazminat','İş ilişkileri','Mülkiyet ve diğer ayni haklar','Aile ve evlilik uyuşmazlıkları (boşanma)']},
-          {p1:'Şirketinizin müşterilerinizden veya tüketicilerinden alacakları varsa, alacak tahsilat avukatı olarak borçlunuzdan alacağınızı tahsil etmenize yardımcı olacağız. Hem mahkeme dışı hem de yargısal yollarla hızlı ve profesyonel şekilde hareket ediyoruz.',p2:'Alacak tahsilatındaki uzun yıllık deneyimimizde, borcun geçerliliğini ve miktarını teyit edecek profesyonel değerlendirmeler hazırlayabilecek bilirkişilerle yakın ilişkiler geliştirdik.',items:['Parasal alacak tahsili konusunda danışmanlık','Mahkeme veya noter önünde temsil','İcra müdürlüğü önünde temsil','Alacak tahsilatıyla ilgili diğer işlemler']},
-          {p1:'Gayrimenkul söz konusu olduğunda yasal düzenlemeler ve yerel uygulamaların bilinmesi büyük önem taşımaktadır; kullanım, tasarruf ve kısıtlamadan doğan tüm hak ve yükümlülükler dahil olmak üzere.',p2:'İnşaat konusunda en büyük başarının, müşterilerimiz olan yatırımcılar için olası zararlı sonuçların zamanında önlenmesi olduğuna inanıyoruz; tapu senedi alınmasına kadar hukuki yardım sağlıyoruz.',items:['Planlama ve proje tasarımı','İnşaat ve geliştirme','Finansman ve vergilendirme','İnşaat izin ve onaylarının alınması','Hukuki belgelerin hazırlanması ve analizi','Yetkili makamlar önünde temsil']},
-          {p1:'Tüzel kişiler günlük faaliyetlerinde standart iş zorluklarını temsil etmeyen hukuki sorularla karşılaşmaktadır. Bu hukuki sorunların üstesinden gelmeniz için bir hukuk bürosunu görevlendirmek zaman ve kaynak tasarrufu sağlayacaktır.',p2:'Farklı sektörlerdeki çeşitli müşterilere danışmanlık yaparak edindiğimiz deneyim, iş çıkarlarınızın gerçekleştirilmesine ilişkin tüm kararları hızlı ve doğru bir şekilde almanıza imkan tanıyacaktır.',items:['Sözleşmelerin ve diğer hukuki belgelerin gözden geçirilmesi ve hazırlanması','İş ilişkileri','Ticaret hukuku','Sözleşme yükümlülükleri','Mülkiyet hukuku meseleleri','Diğer alanlar']},
-          {p1:'Nasıl meydana geldiğinden bağımsız olarak, zararlı bir olay her zaman öngörülemez ve zarar görende sonuçlara yol açar. Mevzuat, her kişinin mülkünün zarar hiç gerçekleşmemiş gibi önceki durumuna kavuşturulması gerektiğini öngörmektedir — zarara uğrayan herkes için tatmin hakkını güvence altına alarak.',items:['Mülkün azalmasına yol açan zararlar','Kaybedilen kazanç / kâr nedeniyle uğranılan zarar','Kişisel hakların ihlaline bağlı manevi zarar','Sigorta kapsamında tazminat']},
+          {"h":"Medeni Hukuk ve Eşya Hukuku","p":["Medeni ve mülkiyet haklarınızın kapsamlı şekilde korunması. Mülkiyet uyuşmazlıklarında temsil, zilyetliğin korunması, ilgili maddi hukuka uygun olarak başkasının malı üzerindeki sınırlı ayni hakların (rehin, ipotek, irtifak hakları) tescili ve terkini, ayrıca gayrimenkul alım satımında hukuki yardım ile gerçek ve tüzel kişilerin kişilik haklarının korunması."]},
+          {"h":"Borçlar Hukuku ve Tazminat","p":["Her türlü medeni ve ticari sözleşmenin hazırlanması, yorumlanması ve analizi, müzakereler sırasında hukuki danışmanlık ile sözleşmelerin ifası, feshi veya hükümsüzlüğünün tespitinde temsil. Her türlü sebepten (trafik kazaları, iş kazaları, sözleşmeden doğan yükümlülüklerin ihlali) kaynaklanan maddi ve manevi tazminat süreçlerinin yürütülmesi."]},
+          {"h":"Aile Hukuku","p":["Hassas aile ilişkilerinde gizlilik içinde ve uzman temsil. Boşanma davaları, ergin olmayan çocukların velayeti ve bakımı, çocukların birlikte yaşamadığı ebeveynle kişisel ilişkinin düzenlenmesi, nafakanın belirlenmesi ve değiştirilmesi, evlilik mallarının paylaşımı ile aile içi şiddet davalarında ve Sosyal Hizmet Merkezleri önünde koruma."]},
+          {"h":"Miras Hukuku","p":["Noterler ve mahkemeler önünde uzman danışmanlık ve tereke işlemlerinin yürütülmesi. Vasiyetnamelerin, ölünceye kadar bakma sözleşmelerinin ve sağlığında mal paylaştırma sözleşmelerinin hazırlanması, mirasçıların saklı paylarının korunması ile hukuki işlemlerin veya vasiyetnamelerin iptaline yönelik karmaşık miras uyuşmazlıklarında temsil."]},
+          {"h":"Ceza Hukuku","p":["Ceza muhakemesinin tüm aşamalarında (polis, savcılık, ilk derece ve ikinci derece mahkemesi) şüpheli ve sanıkların profesyonel ve özverili savunması. Suçtan zarar görenlerin ve mağdurların temsili ve hukuki korunması, ayrıca suç duyurusu, özel dava ve tazminata yönelik malvarlığı taleplerinin sunulması."]},
+          {"h":"Trafik Cezaları ve Kabahatler Hukuku","p":["Gerçek ve tüzel kişiler için kabahat makamları ve mahkemeler önündeki kabahat süreçlerinde hukuki yardım ve temsil. Trafik kabahatleri için düzenlenen ödeme emirlerine karşı uzman savunma, para cezası miktarına itiraz, koruma tedbirlerinin (araç kullanma yasağı) verilmesinin önlenmesi ve uzlaşma süreçlerinin yürütülmesi."]},
+          {"h":"Çocuk Hukuku ve Çocuk Adaleti","p":["Kanunla ihtilafa düşen çocukların çocuk hâkimleri ve Sosyal Hizmet Merkezleri önünde uzmanlaşmış hukuki temsili ve zorunlu müdafiliği; tüm süreçte öncelik çocuğun üstün yararının korunmasıdır. Arabuluculuk süreçlerinde ve yardım, koruma ve eğitim tedbirlerinin uygulanmasında temsil ile yargılama süreçlerinde mağdur veya tanık olan çocukların hukuki korunması."]},
+          {"h":"Ticaret Hukuku ve Kurumsal Yönetim","p":["İşletmeler için eksiksiz hukuki destek: şahıs tacirleri, limited şirketler (DOO, DOOEL) ve anonim şirketler (AD). Şirket belgelerinin hazırlanması (sözleşmeler, esas sözleşmeler, ortaklar kurulu veya genel kurul kararları), ortaklar veya iş ortakları arasındaki ticari uyuşmazlıklarda temsil, yapısal değişikliklerde (devralma, birleşme, bölünme) hukuki destek ile şirketin ve ortakların/pay sahiplerinin haklarının korunması konusunda yönetim organlarına danışmanlık."]},
+          {"h":"İflas Hukuku ve İflas Süreci","p":["İflas sürecinin tüm aşamalarında borçlular ve alacaklılar için eksiksiz hukuki temsil ve danışmanlık. Ödeme acziyeti nedeniyle iflas sürecinin başlatılması için başvuru yapılması, iflas masasına alacakların bildirilmesi ve tespitinde alacaklıların temsili, alacaklara itiraz ile alacaklılar komitesi ve alacaklılar toplantısında hukuki koruma. Şirketlerin yeniden yapılandırma planlarının hazırlanması ve uygulanmasında hukuki yardım ile iflas eden borçlunun hukuki işlemlerinin iptaline yönelik süreçlerde temsil."]},
+          {"h":"Merkezi Sicil İşlemleri (Kurumsal Hizmetler)","p":["Merkezi Sicil'in e-tescil sistemi üzerinden tüm işlemlerin hızlı ve etkin şekilde yürütülmesi. Yeni ticaret şirketleri, şubeler ve diğer tüzel kişilerin kurulması, yapısal değişikliklerin tescili, müdür, ortak, merkez adresi ve faaliyet konusu değişiklikleri, rehin ve diğer yüklerin tescili ve terkini ile şirketlerin tasfiyesi ve sicilden silinmesi."]},
+          {"h":"İş Hukuku ve İş İlişkileri","p":["İşverenler ve çalışanlar için hukuki danışmanlık. İş sözleşmeleri, yönetici sözleşmeleri, kadro ve iç organizasyon yönetmeliklerinin hazırlanması. Haksız fesih, ücret, prim ve tazminat ödemelerine ilişkin uyuşmazlıklarda, işyerinde psikolojik tacize (mobbing) karşı koruma süreçlerinde ve disiplin süreçlerinde temsil."]},
+          {"h":"İdare Hukuku ve Vergi Uyuşmazlıkları","p":["Gerçek ve tüzel kişilerin devlet idaresi organları, denetim birimleri ve yerel yönetimler önünde temsili. İzin, lisans ve onay alınmasına yönelik idari işlemlerin yürütülmesi, idari kararlara karşı itiraz başvuruları ile hak ve hukuki menfaatlerin korunması için İdare Mahkemesi önünde idari davaların yürütülmesi."]},
+          {"h":"İcra ve Alacak Tahsili","p":["Vadesi gelmiş parasal ve parasal olmayan alacakların tahsili için etkin ve zamanında hukuki yardım. İcra memurları ve noterler önündeki süreçlerde (resmi belgeye dayalı kararların çıkarılması) alacaklı ve borçluların temsili, icra emirlerine itiraz ve icradaki usulsüzlüklere karşı kanun yollarına başvuru."]},
+          {"h":"Yabancıların İkametinin Düzenlenmesi (Göç Hukuku)","p":["Yabancı uyrukluların Kuzey Makedonya Cumhuriyeti'nde yasal ikametinin (kısa süreli, geçici ve daimi ikamet) düzenlenmesine ilişkin tüm süreçlerde eksiksiz hukuki yardım ve temsil.","Tüm yasal gerekçelerle uygun vizelerin (C vizesi ve D vizesi) ve geçici ikamet izinlerinin alınması süreçlerinde hukuki rehberlik:"],"items":[{"t":"Çalışma ve iş amaçlı ikamet","d":"Yabancıların istihdamı, mevsimlik çalışma, yabancı şirketlerce görevlendirilen çalışanlar, serbest çalışma ve stratejik ortak statüsündeki projelerde çalışma amaçlı ikamet"},{"t":"Aile birleşimi","d":"Yabancı bir sponsor veya Kuzey Makedonya vatandaşı ile aile birleşimi (eşler, ergin olmayan çocuklar, bakmakla yükümlü olunan ebeveynler)"},{"t":"Gayrimenkule dayalı ikamet","d":"Kanunda belirtilen şartlar altında daire, ev veya bina mülkiyeti edinmiş AB ve OECD üyesi ülke vatandaşları için"},{"t":"Eğitim ve mesleki gelişim","d":"Okul eğitimi, örgün üniversite eğitimi, dil öğrenimi, uluslararası öğrenci değişimi, mesleki uzmanlaşma ve uygulamalı eğitim"},{"t":"Bilimsel araştırma, gönüllülük ve tedavi"},{"t":"İnsani gerekçeler ve Kuzey Makedonya kökenli yabancıların ikameti"},{"t":"Daimi ikamet","d":"5 yıllık kesintisiz ikamet şartının yerine getirilmesinin ardından hukuki temsil, ikamet izinlerinin uzatılması ile ikametin reddi, iptali veya geri alınması, geri gönderme ya da sınır dışı etme kararlarına karşı itiraz ve dava açılması"}]},
+          {"h":"Kuzey Makedonya Cumhuriyeti Vatandaşlığı","p":["Makedon vatandaşlığına ilişkin tüm süreçlerde hukuki danışmanlık, gerekli tüm belgelerin hazırlanması ve İçişleri Bakanlığı, diplomatik ve konsüler temsilcilikler ile İdare Mahkemesi önünde temsil:"],"items":[{"t":"Vatandaşlığa alınma yoluyla vatandaşlık kazanma (genel usul)","d":"Sürecin yürütülmesi, yasal ikamet şartlarının yerine getirilmesi, teminatların sağlanması ve yabancı vatandaşlıktan çıkma"},{"t":"Kolaylaştırılmış vatandaşlık kazanma (istisnai vatandaşlığa alınma)","sub":["Kuzey Makedonya vatandaşıyla evlilik yoluyla (yurt içinde veya yurt dışında)","Kuzey Makedonya'dan göç etmiş kişiler ve birinci derece altsoyları için (asıl vatandaşlıktan çıkma şartı aranmaksızın)","Özel ekonomik, bilimsel, kültürel, sportif veya diğer ulusal çıkar gerekçesiyle","Vatansız kişiler ve tanınmış mülteci statüsüne sahip kişiler için"]},{"t":"Soy bağı ve doğum yoluyla vatandaşlık kazanma","d":"Yurt içinde veya yurt dışında doğan çocukların doğum kütüğüne ve vatandaş kayıtlarına tescili"},{"t":"Kuzey Makedonya vatandaşlığından çıkma işlemleri","d":"Önceki tüm mülkiyet, evlilik, aile ve vergi yükümlülüklerinin düzenlenmesi"},{"t":"Vatandaşlık statüsünün tespiti","d":"Kayıtlara ek tescil ve itiraz edilen veya reddedilen başvurularda idari dava süreçlerinin yürütülmesi"}]}
         ],
       },
     };
@@ -1687,9 +1825,16 @@
         const i = parseInt(el.dataset.accBody) - 1;
         const d = t.acc[i];
         if (!d) return;
-        let html = d.p1 ? `<p>${d.p1}</p>` : '';
-        if (d.p2) html += `<p>${d.p2}</p>`;
-        html += '<ul>' + d.items.map(item => `<li>${item}</li>`).join('') + '</ul>';
+        el.closest('.acc-item').querySelector('.acc-header h4').textContent = d.h;
+        let html = d.p.map(p => `<p>${p}</p>`).join('');
+        if (d.items) {
+          html += '<ul>' + d.items.map(item => {
+            let li = `<strong>${item.t}</strong>`;
+            if (item.d) li += `<span>${item.d}</span>`;
+            if (item.sub) li += '<ul>' + item.sub.map(s => `<li>${s}</li>`).join('') + '</ul>';
+            return `<li><div>${li}</div></li>`;
+          }).join('') + '</ul>';
+        }
         el.innerHTML = html;
         // update open accordion height if needed
         const body = el.closest('.acc-body');

@@ -914,34 +914,6 @@
     #back-top.show { display: flex; }
     #back-top svg { width: 18px; height: 18px; fill: #fff; }
 
-    /* ── HERO SCROLL INDICATOR ── */
-    .scroll-down {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255,255,255,0.5);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 36px;
-      background: rgba(255,255,255,0.35);
-      animation: scrollPulse 1.8s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(0.6); }
-    }
-
     /* ── HERO IMAGE BG ── */
     .hero-cityscape {
       position: absolute;
@@ -1023,11 +995,17 @@
       gap: 0;
       transform: translateY(-8px);
       opacity: 0;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.25s;
+      /* closed drawer is invisible: it must not catch taps or keyboard focus */
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.25s, visibility 0s 0.25s;
     }
     .nav-drawer.open {
       transform: translateY(0);
       opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.25s, visibility 0s;
     }
     .nav-drawer a {
       display: block;
@@ -1180,10 +1158,6 @@
       <p data-i18n="hero_sub">Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.</p>
       <a href="#about" class="btn-primary" data-i18n="hero_cta1">Our Services</a>
       <a href="#contact" class="btn-outline" data-i18n="hero_cta2">Contact Us</a>
-    </div>
-    <div class="scroll-down">
-      <div class="scroll-line"></div>
-      <span data-i18n="scroll">Scroll</span>
     </div>
   </section>
 
@@ -1525,7 +1499,7 @@
         nav_home:'Home', nav_about:'About', nav_services:'Services', nav_contact:'Contact',
         hero_title:'Your Legal Rights, Expertly Defended',
         hero_sub:'Dedicated legal representation in employment, business, and civil law.<br>We stand by your side — every step of the way.',
-        hero_cta1:'Our Services', hero_cta2:'Contact Us', scroll:'Scroll',
+        hero_cta1:'Our Services', hero_cta2:'Contact Us',
         about_title:'About Our Firm',
         about_p1:'GogoMira Law Firm is a full-service legal practice committed to protecting the rights and interests of our clients. With years of experience across multiple areas of law, we provide tailored legal solutions for individuals and businesses alike.',
         about_p2:'Our team of lawyers combines deep legal expertise with a client-first approach. Whether you face an employment dispute, a business challenge, or a civil claim, we are your trusted partner — focused on achieving the best possible outcome for you.',
@@ -1569,7 +1543,7 @@
         nav_home:'Дома', nav_about:'За нас', nav_services:'Услуги', nav_contact:'Контакт',
         hero_title:'Вашите права, стручно заштитени',
         hero_sub:'Посветено правно застапување во работно, деловно и граѓанско право.<br>Со вас сме — на секој чекор.',
-        hero_cta1:'Нашите услуги', hero_cta2:'Контактирај нè', scroll:'Скролај',
+        hero_cta1:'Нашите услуги', hero_cta2:'Контактирај нè',
         about_title:'За нашата канцеларија',
         about_p1:'Адвокатското друштво GogoMira е канцеларија со целосен сервис посветена на заштита на правата и интересите на нашите клиенти. Со долгогодишно искуство во повеќе области на правото, нудиме приспособени правни решенија за физички и правни лица.',
         about_p2:'Нашиот тим на адвокати комбинира длабока правна експертиза со пристап насочен кон клиентот. Без разлика дали се соочувате со работен спор, деловен предизвик или граѓанска тужба — ние сме ваш доверлив партнер, фокусиран на постигнување на најдобриот можен исход за вас.',
@@ -1613,7 +1587,7 @@
         nav_home:'Kryefaqja', nav_about:'Rreth nesh', nav_services:'Shërbime', nav_contact:'Kontakt',
         hero_title:'Të drejtat tuaja, të mbrojtura me ekspertizë',
         hero_sub:'Përfaqësim ligjor i dedikuar në të drejtën e punës, tregtare dhe civile.<br>Ne jemi pranë jush — në çdo hap.',
-        hero_cta1:'Shërbimet tona', hero_cta2:'Na kontaktoni', scroll:'Rrëshqit',
+        hero_cta1:'Shërbimet tona', hero_cta2:'Na kontaktoni',
         about_title:'Rreth firmës sonë',
         about_p1:'Firma e avokatisë GogoMira është një praktikë ligjore me shërbim të plotë e përkushtuar ndaj mbrojtjes së të drejtave dhe interesave të klientëve tanë. Me vite përvojë në fusha të shumta të ligjit, ofrojmë zgjidhje juridike të përshtatura për individë dhe biznese.',
         about_p2:'Ekipi ynë i juristëve kombinon ekspertizë të thellë juridike me qasje të orientuar nga klienti. Pavarësisht nëse përballeni me një mosmarrëveshje pune, sfidë biznesi apo kërkesë civile — ne jemi partneri juaj i besuar, i fokusuar në arritjen e rezultatit më të mirë.',
@@ -1657,7 +1631,7 @@
         nav_home:'Ana Sayfa', nav_about:'Hakkımızda', nav_services:'Hizmetler', nav_contact:'İletişim',
         hero_title:'Haklarınız, Uzman Ellerde Güvende',
         hero_sub:'İş, ticaret ve medeni hukukta adanmış hukuki temsil.<br>Her adımda yanınızdayız.',
-        hero_cta1:'Hizmetlerimiz', hero_cta2:'Bize Ulaşın', scroll:'Kaydır',
+        hero_cta1:'Hizmetlerimiz', hero_cta2:'Bize Ulaşın',
         about_title:'Büromuz Hakkında',
         about_p1:'GogoMira Hukuk Bürosu, müvekkillerimizin hak ve çıkarlarını korumaya adanmış tam hizmet veren bir hukuk bürosudur. Hukukun birçok alanındaki yıllarca süren deneyimimizle, bireyler ve işletmeler için özelleştirilmiş hukuki çözümler sunuyoruz.',
         about_p2:'Avukat ekibimiz, derin hukuki uzmanlığı müvekkil odaklı bir yaklaşımla birleştirmektedir. İster bir iş uyuşmazlığıyla, ister bir ticaret sorunuyla, ister bir hukuki talep ile karşı karşıya olun — sizin için en iyi sonucu elde etmeye odaklanmış güvenilir ortağınızız.',
